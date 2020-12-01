@@ -29,7 +29,7 @@ git pull
 
 ``` yml
 # config
-cover: //blog.ghost.org/content/images/2013/Nov/cover.png
+cover: https://github.com/muzig/muzig.github.io/tree/main/themes/casper/source/img
 logo: //blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png
 bio: 'A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.'
 

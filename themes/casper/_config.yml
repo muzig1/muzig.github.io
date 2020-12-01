@@ -1,6 +1,6 @@
 # config
-cover: img/head.jpg
-logo: img/head.jpg
+cover: https://raw.githubusercontent.com/muzig/muzig.github.io/main/themes/casper/source/img/head.jpg
+logo: https://raw.githubusercontent.com/muzig/muzig.github.io/main/themes/casper/source/img/head.jpg
 bio: "A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms."
 
 # Content
