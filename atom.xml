@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2020-12-28T03:05:20.660Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Goland Cracking</title>
+    <link href="http://example.com/2020/12/05/goland-cracking/"/>
+    <id>http://example.com/2020/12/05/goland-cracking/</id>
+    <published>2020-12-05T12:58:28.000Z</published>
+    <updated>2020-12-28T03:05:20.660Z</updated>
+    
+    <content type="html"><![CDATA[<p>实际上非破解, 而是循环重置试用时间.</p><h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><a id="more"></a><p>步骤:</p><ol><li>打开 goland, 选择试用, 进入IDE界面</li><li>Menu - Goland - Perference - Plugins</li><li>点击像齿轮的图标! <img src="https://raw.githubusercontent.com/muzig/muzig.github.io/main/source/img/Snipaste_2020-12-05_13-03-28.png" alt="齿轮"></li><li>Manager Plugin Repos</li><li>添加此链接: <code>https://plugins.zhile.io</code>, 等待刷新完成</li><li>搜索插件 <code>IDE Eval reset</code>, 插件描述有说明和使用方法</li><li>下载安装重启 IDE</li></ol><h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><ul><li><a href="https://zhile.io/">破解大佬博客</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;实际上非破解, 而是循环重置试用时间.&lt;/p&gt;
+&lt;h2 id=&quot;教程&quot;&gt;&lt;a href=&quot;#教程&quot; class=&quot;headerlink&quot; title=&quot;教程&quot;&gt;&lt;/a&gt;教程&lt;/h2&gt;</summary>
+    
+    
+    
+    
+    <category term="crack" scheme="http://example.com/tags/crack/"/>
+    
+    <category term="goland" scheme="http://example.com/tags/goland/"/>
+    
+  </entry>
+  
+</feed>
