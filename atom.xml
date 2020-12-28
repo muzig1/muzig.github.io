@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-12-28T15:07:36.633Z</updated>
+  <updated>2020-12-28T16:01:13.503Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>golang-GC</title>
+    <link href="http://example.com/2020/12/28/golang-GC/"/>
+    <id>http://example.com/2020/12/28/golang-GC/</id>
+    <published>2020-12-28T23:32:41.000Z</published>
+    <updated>2020-12-28T16:01:13.503Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>标记清除</li><li>并行标记清除</li><li>三色标记法</li><li>Hybrid Write Barrier</li></ul><a id="more"></a><h2 id="标记清除-amp-并行标记清除"><a href="#标记清除-amp-并行标记清除" class="headerlink" title="标记清除 &amp; 并行标记清除"></a>标记清除 &amp; 并行标记清除</h2><p>GC 开始之后, 启动 STW 然后从 root 开始,  root 区值当前所有 goroutine 的栈和全局数据区的变量(主要是这 2 个地方), 将能被触及的 object 标记, 剩下的就是可回收的; 最后再清理放回 mcache 中, 以备后续使用.</p><p>并行标记清除, 实际上是清理过程不需要 STW, 减少了 STW 的时间.</p><h2 id="三色标记法"><a href="#三色标记法" class="headerlink" title="三色标记法"></a>三色标记法</h2><p><img src="/../img/gc_algorithm.png" alt="gc-algorithm"></p><ol><li>正常情况下，写操作就是正常的赋值。</li><li>GC 开始，开启写屏障等准备工作。开启写屏障等准备工作需要短暂的 STW。</li><li>Stack scan 阶段，从全局空间和 goroutine 栈空间上收集变量。</li><li>Mark 阶段，执行上述的三色标记法，直到没有灰色对象。</li><li>Mark termination 阶段，开启 STW，回头重新扫描 root 区域新变量，对他们进行标记。</li><li>Sweep 阶段，关闭 STW 和 写屏障，对白色对象进行清除。</li></ol><h2 id="Hybrid-Write-Barrier-混合写屏障"><a href="#Hybrid-Write-Barrier-混合写屏障" class="headerlink" title="Hybrid Write Barrier (混合写屏障)"></a>Hybrid Write Barrier (混合写屏障)</h2><p>Go 在 1.8 版本引入了混合写屏障，其会在赋值前，对旧数据置灰，再视情况对新值进行置灰。</p><p><img src="/../img/gc-hyber.png" alt="gc-hybrid"></p><h2 id="何时触发-GC"><a href="#何时触发-GC" class="headerlink" title="何时触发 GC"></a>何时触发 GC</h2><ul><li>容量触发 - 达到设置的阈值触发 GC, 默认为100(即内存增长100%即触发一次), 可以通过环境变量 GOGC 或者 debug.SetGCPercent()</li><li>时间触发 - 每隔 2 分钟, 触发一次 GC</li><li>手动触发 - runtime.GC()</li></ul><h2 id="其他优化"><a href="#其他优化" class="headerlink" title="其他优化"></a>其他优化</h2><ul><li>只会占用 25% 的 cpu 算力处理 GC 逻辑, 保证减少对用户的影响. 若下一轮 GC 触发, 会等待上一轮执行完毕</li><li>对于 tiny 对象, 直接标记黑色, 没有灰色阶段, 因为不存在引用对象</li><li>采用对象池的方式, 减少 GC 的压力, 但实际上也会存在标记的压力; 如果可以放在永久标记, 就可以减少标记压力</li><li>直接申请大内存(大于32k), 对 GC 来说是一个 largespan; 需要自行代码管理</li></ul><h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><ol><li>引入分代机制, 像 JVM 那样内存分为 一级/二级/永久, 不同级别, 采用不同的计算资源</li></ol><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol><li>减少层级数 - 嵌套层级越多, 对于 GC 的压力越大; 如: chan map[string][]*string</li></ol><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul><li><a href="https://www.jianshu.com/p/0083a90a8f7e">简书</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;标记清除&lt;/li&gt;
+&lt;li&gt;并行标记清除&lt;/li&gt;
+&lt;li&gt;三色标记法&lt;/li&gt;
+&lt;li&gt;Hybrid Write Barrier&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="golang" scheme="http://example.com/tags/golang/"/>
+    
+    <category term="gc" scheme="http://example.com/tags/gc/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Goland 破解教程</title>
     <link href="http://example.com/2020/12/05/goland-cracking/"/>
     <id>http://example.com/2020/12/05/goland-cracking/</id>
     <published>2020-12-05T12:58:28.000Z</published>
-    <updated>2020-12-28T15:07:36.633Z</updated>
+    <updated>2020-12-28T16:01:13.503Z</updated>
     
     <content type="html"><![CDATA[<p>破解方式: 循环重置试用时间.</p><a id="more"></a><h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p>步骤:</p><ol><li>打开 goland, 选择试用, 进入IDE界面</li><li>Menu - Goland - Perference - Plugins</li><li>点击像齿轮的图标(如下图)</li><li>Manager Plugin Repos</li><li>添加此链接: <code>https://plugins.zhile.io</code>, 等待刷新完成</li><li>搜索插件 <code>IDE Eval reset</code>, 插件描述有说明和使用方法</li><li>下载安装重启 IDE</li></ol><p><img src="/../img/Snipaste_2020-12-05_13-03-28.png" alt="齿轮"></p><h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><ul><li><a href="https://zhile.io/">破解大佬博客</a></li></ul>]]></content>
     

@@ -17,16 +17,25 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Archive | Hexo</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <title>golang-GC | Hexo</title>
+  <meta name="description" content="标记清除 并行标记清除 三色标记法 Hybrid Write Barrier">
+<meta property="og:type" content="article">
+<meta property="og:title" content="golang-GC">
+<meta property="og:url" content="http://example.com/2020/12/28/golang-GC/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="标记清除 并行标记清除 三色标记法 Hybrid Write Barrier">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/gc_algorithm.png">
+<meta property="og:image" content="http://example.com/img/gc-hyber.png">
+<meta property="article:published_time" content="2020-12-28T23:32:41.000Z">
+<meta property="article:modified_time" content="2020-12-28T16:01:13.503Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="gc">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/gc_algorithm.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/archives/index.html">
+  <link rel="canonical" href="http://example.com/2020/12/28/golang-GC/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -290,58 +299,206 @@
   
   
 <main class="main" role="main">
-  	<article class="content article article-archives article-type-list" itemscope="">
-	    <header class="article-header">
-	      <h1 itemprop="title">Archive</h1>
-	      <p class="text-muted">Total 2 articles</p>
-	    </header>
-	    <div class="article-body">
-	      
+  <div class="content">
+  <article id="post-golang-GC" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
   
+    <h1 class="article-title" itemprop="name">
+      golang-GC
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/12/28/golang-GC/" class="article-date">
+	  <time datetime="2020-12-28T23:32:41.000Z" itemprop="datePublished">2020-12-28</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/gc/" rel="tag">gc</a>, <a class="article-tag-link-link" href="/tags/golang/" rel="tag">golang</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/12/28/golang-GC/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <ul>
+<li>标记清除</li>
+<li>并行标记清除</li>
+<li>三色标记法</li>
+<li>Hybrid Write Barrier</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="标记清除-amp-并行标记清除"><a href="#标记清除-amp-并行标记清除" class="headerlink" title="标记清除 &amp; 并行标记清除"></a>标记清除 &amp; 并行标记清除</h2><p>GC 开始之后, 启动 STW 然后从 root 开始,  root 区值当前所有 goroutine 的栈和全局数据区的变量(主要是这 2 个地方), 将能被触及的 object 标记, 剩下的就是可回收的; 最后再清理放回 mcache 中, 以备后续使用.</p>
+<p>并行标记清除, 实际上是清理过程不需要 STW, 减少了 STW 的时间.</p>
+<h2 id="三色标记法"><a href="#三色标记法" class="headerlink" title="三色标记法"></a>三色标记法</h2><p><img src="/../img/gc_algorithm.png" alt="gc-algorithm"></p>
+<ol>
+<li>正常情况下，写操作就是正常的赋值。</li>
+<li>GC 开始，开启写屏障等准备工作。开启写屏障等准备工作需要短暂的 STW。</li>
+<li>Stack scan 阶段，从全局空间和 goroutine 栈空间上收集变量。</li>
+<li>Mark 阶段，执行上述的三色标记法，直到没有灰色对象。</li>
+<li>Mark termination 阶段，开启 STW，回头重新扫描 root 区域新变量，对他们进行标记。</li>
+<li>Sweep 阶段，关闭 STW 和 写屏障，对白色对象进行清除。</li>
+</ol>
+<h2 id="Hybrid-Write-Barrier-混合写屏障"><a href="#Hybrid-Write-Barrier-混合写屏障" class="headerlink" title="Hybrid Write Barrier (混合写屏障)"></a>Hybrid Write Barrier (混合写屏障)</h2><p>Go 在 1.8 版本引入了混合写屏障，其会在赋值前，对旧数据置灰，再视情况对新值进行置灰。</p>
+<p><img src="/../img/gc-hyber.png" alt="gc-hybrid"></p>
+<h2 id="何时触发-GC"><a href="#何时触发-GC" class="headerlink" title="何时触发 GC"></a>何时触发 GC</h2><ul>
+<li>容量触发 - 达到设置的阈值触发 GC, 默认为100(即内存增长100%即触发一次), 可以通过环境变量 GOGC 或者 debug.SetGCPercent()</li>
+<li>时间触发 - 每隔 2 分钟, 触发一次 GC</li>
+<li>手动触发 - runtime.GC()</li>
+</ul>
+<h2 id="其他优化"><a href="#其他优化" class="headerlink" title="其他优化"></a>其他优化</h2><ul>
+<li>只会占用 25% 的 cpu 算力处理 GC 逻辑, 保证减少对用户的影响. 若下一轮 GC 触发, 会等待上一轮执行完毕</li>
+<li>对于 tiny 对象, 直接标记黑色, 没有灰色阶段, 因为不存在引用对象</li>
+<li>采用对象池的方式, 减少 GC 的压力, 但实际上也会存在标记的压力; 如果可以放在永久标记, 就可以减少标记压力</li>
+<li>直接申请大内存(大于32k), 对 GC 来说是一个 largespan; 需要自行代码管理</li>
+</ul>
+<h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><ol>
+<li>引入分代机制, 像 JVM 那样内存分为 一级/二级/永久, 不同级别, 采用不同的计算资源</li>
+</ol>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li>减少层级数 - 嵌套层级越多, 对于 GC 的压力越大; 如: chan map[string][]*string</li>
+</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0083a90a8f7e">简书</a></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2020/12/28/golang-GC/" title="golang-GC" target="_blank" rel="external">http://example.com/2020/12/28/golang-GC/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">钢</span><small class="ml-1x">游戏后端开发</small></a></h3>
+        <div>保持热爱, 奔赴山海.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
   
     
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
     
-      
-      
-      <section class="panel panel-default b-no">
-        <div class="panel-heading" role="tab">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2020" aria-expanded="true">
-              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-              2020
-            </a>
-            <!-- <a href="/archives/2020" class="archive-year">2020</a> -->
-          </h3>
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2020/12/05/goland-cracking/" title="Goland 破解教程"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div id="collapse2020" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2020">
-        <div class="panel-body">
-          <div class="collection">
-    
-    
-<a href="/2020/12/28/golang-GC/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-12-28T23:32:41.000Z" itemprop="datePublished">2020-12-28</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> golang-GC
-</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-  
-    
-    
-    
-<a href="/2020/12/05/goland-cracking/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-12-05T12:58:28.000Z" itemprop="datePublished">2020-12-05</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Goland 破解教程
-</a>
 
-
-  
-  
-    </div></div></div></section>
-  
-
-	    </div>
-  	</article>
-  	 	
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -402,6 +559,37 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 
