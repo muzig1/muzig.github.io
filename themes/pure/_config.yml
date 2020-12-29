@@ -127,9 +127,9 @@ comment:
     ClientID: #必须. GitHub Application Client ID.
     ClientSecret: #必须. GitHub Application Client Secret.
   valine: # Valine. https://valine.js.org
-    appid: # your leancloud application appid
-    appkey: # your leancloud application appkey
-    notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+    appid: iXHePYtYLDhvXVowXpCEsN7Q-gzGzoHsz # your leancloud application appid
+    appkey: EivU5PsoKKSfxoKo3KFoJkuh # your leancloud application appkey
+    notify: true # mail notifier , https://github.com/xCss/Valine/wiki
     verify: false # Verification code
     placeholder: Just go go # comment box placeholder
     avatar: mm # gravatar style
