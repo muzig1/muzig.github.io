@@ -30,6 +30,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/2020/12/29/golang-primary-interview/</loc>
+    
+    <lastmod>2020-12-29</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://example.com/about/index.html</loc>
     
     <lastmod>2020-12-29</lastmod>
@@ -82,6 +89,13 @@
   
   <url>
     <loc>http://example.com/tags/escape-analysis/</loc>
+    <lastmod>2020-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/interview/</loc>
     <lastmod>2020-12-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
