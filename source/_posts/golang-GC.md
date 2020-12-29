@@ -4,6 +4,7 @@ date: 2020-12-28 23:32:41
 tags:
     - golang
     - gc
+categories: 编程语言
 ---
 
 - 标记清除

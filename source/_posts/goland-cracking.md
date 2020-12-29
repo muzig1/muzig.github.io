@@ -4,6 +4,7 @@ date: 2020-12-05 12:58:28
 tags:
     - crack
     - goland
+categories: 工具
 ---
 
 破解方式: 循环重置试用时间.

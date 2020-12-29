@@ -190,16 +190,16 @@ profile:
   author_title: 游戏后端开发
   author_description: 保持热爱, 奔赴山海.
   location: Chengdu, China
-  follow: https://github.com/cofess
+  follow: https://github.com/muzig
   # Social Links
   social:
     links:
-      github: https://github.com/cofess
-      weibo: http://weibo.com/cofess
-      twitter: https://twitter.com/iwebued
+      github: https://github.com/muzig
+      # weibo: http://weibo.com/cofess
+      # twitter: https://twitter.com/iwebued
       # facebook: /
       # dribbble: /
-      behance: https://www.behance.net/cofess
+      # behance: https://www.behance.net/cofess
       rss: atom.xml
     link_tooltip: true # enable the social link tooltip, options: true, false
   # My Skills
