@@ -8,4 +8,8 @@
     <loc>http://example.com/2020/12/28/golang-GC/</loc>
     <lastmod>2020-12-29</lastmod>
   </url>
+  <url>
+    <loc>http://example.com/2020/12/29/golang-escape-analysis/</loc>
+    <lastmod>2020-12-29</lastmod>
+  </url>
 </urlset> 
