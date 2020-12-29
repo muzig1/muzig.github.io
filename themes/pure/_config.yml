@@ -83,14 +83,14 @@ search:
 
 # Donate
 donate:
-  enable: true
+  enable: false
   # 微信打赏
   wechatpay:
-    qrcode: images/donate/wechatpayimg.png
+    qrcode:
     title: 微信支付
   # 支付宝打赏
   alipay:
-    qrcode: images/donate/alipayimg.png
+    qrcode:
     title: 支付宝
 
 # Share
