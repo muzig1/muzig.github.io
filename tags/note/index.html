@@ -17,25 +17,16 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Golang GC | Hexo</title>
-  <meta name="description" content="标记清除 并行标记清除 三色标记法 Hybrid Write Barrier">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Golang GC">
-<meta property="og:url" content="http://example.com/2020/12/26/golang-GC/index.html">
+  <title>Tag: note | Hexo</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/tags/note/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="标记清除 并行标记清除 三色标记法 Hybrid Write Barrier">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/gc_algorithm.png">
-<meta property="og:image" content="http://example.com/img/gc-hyber.png">
-<meta property="article:published_time" content="2020-12-26T23:32:41.000Z">
-<meta property="article:modified_time" content="2020-12-30T07:50:56.369Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="golang">
-<meta property="article:tag" content="gc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/img/gc_algorithm.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/2020/12/26/golang-GC/index.html">
+  <link rel="canonical" href="http://example.com/tags/note/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -343,181 +334,70 @@
 </aside>
 
   
-  
-<main class="main" role="main">
-  <div class="content">
-  <article id="post-golang-GC" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
-    
-    <div class="article-header">
-      
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Golang GC
-    </h1>
-  
-
-      
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2020/12/26/golang-GC/" class="article-date">
-	  <time datetime="2020-12-26T23:32:41.000Z" itemprop="datePublished">2020-12-26</time>
-	</a>
-</span>
-        
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
-  </span>
-
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/gc/" rel="tag">gc</a>, <a class="article-tag-link-link" href="/tags/golang/" rel="tag">golang</a>
-  </span>
-
-
-        
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/12/26/golang-GC/#comments" class="article-comment-link">Comments</a></span>
-        
-      </div>
-    </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
+  <main class="main" role="main">
+  <article class="content article article-tags post-type-list" itemscope="">
+    <header class="article-header">
+      <h1 itemprop="name" class="hidden-xs">Tag: note</h1>
+      <p class="text-muted hidden-xs">Total 1 articles</p>
+      <nav role="navigation" id="nav-main" class="okayNav">
         <ul>
-<li>标记清除</li>
-<li>并行标记清除</li>
-<li>三色标记法</li>
-<li>Hybrid Write Barrier</li>
-</ul>
-<a id="more"></a>
-
-<ul>
-<li><a href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4--%E5%B9%B6%E8%A1%8C%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4">标记清除 &amp; 并行标记清除</a></li>
-<li><a href="#%E4%B8%89%E8%89%B2%E6%A0%87%E8%AE%B0%E6%B3%95">三色标记法</a></li>
-<li><a href="#hybrid-write-barrier-%E6%B7%B7%E5%90%88%E5%86%99%E5%B1%8F%E9%9A%9C">Hybrid Write Barrier (混合写屏障)</a></li>
-<li><a href="#%E4%BD%95%E6%97%B6%E8%A7%A6%E5%8F%91-gc">何时触发 GC</a></li>
-<li><a href="#%E5%85%B6%E4%BB%96%E4%BC%98%E5%8C%96">其他优化</a></li>
-<li><a href="#%E5%B1%95%E6%9C%9B">展望</a></li>
-<li><a href="#%E7%BB%93%E8%AE%BA">结论</a></li>
-<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
-</ul>
-<h2 id="标记清除-amp-并行标记清除"><a href="#标记清除-amp-并行标记清除" class="headerlink" title="标记清除 &amp; 并行标记清除"></a>标记清除 &amp; 并行标记清除</h2><p>GC 开始之后, 启动 STW 然后从 root 开始,  root 区值当前所有 goroutine 的栈和全局数据区的变量(主要是这 2 个地方), 将能被触及的 object 标记, 剩下的就是可回收的; 最后再清理放回 mcache 中, 以备后续使用.</p>
-<p>并行标记清除, 实际上是清理过程不需要 STW, 减少了 STW 的时间.</p>
-<h2 id="三色标记法"><a href="#三色标记法" class="headerlink" title="三色标记法"></a>三色标记法</h2><p><img src="/../img/gc_algorithm.png" alt="gc-algorithm"></p>
-<ol>
-<li>正常情况下，写操作就是正常的赋值。</li>
-<li>GC 开始，开启写屏障等准备工作。开启写屏障等准备工作需要短暂的 STW。</li>
-<li>Stack scan 阶段，从全局空间和 goroutine 栈空间上收集变量。</li>
-<li>Mark 阶段，执行上述的三色标记法，直到没有灰色对象。</li>
-<li>Mark termination 阶段，开启 STW，回头重新扫描 root 区域新变量，对他们进行标记。</li>
-<li>Sweep 阶段，关闭 STW 和 写屏障，对白色对象进行清除。</li>
-</ol>
-<h2 id="Hybrid-Write-Barrier-混合写屏障"><a href="#Hybrid-Write-Barrier-混合写屏障" class="headerlink" title="Hybrid Write Barrier (混合写屏障)"></a>Hybrid Write Barrier (混合写屏障)</h2><p>Go 在 1.8 版本引入了混合写屏障，其会在赋值前，对旧数据置灰，再视情况对新值进行置灰。</p>
-<p><img src="/../img/gc-hyber.png" alt="gc-hybrid"></p>
-<h2 id="何时触发-GC"><a href="#何时触发-GC" class="headerlink" title="何时触发 GC"></a>何时触发 GC</h2><ul>
-<li>容量触发 - 达到设置的阈值触发 GC, 默认为100(即内存增长100%即触发一次), 可以通过环境变量 GOGC 或者 debug.SetGCPercent()</li>
-<li>时间触发 - 每隔 2 分钟, 触发一次 GC</li>
-<li>手动触发 - runtime.GC()</li>
-</ul>
-<h2 id="其他优化"><a href="#其他优化" class="headerlink" title="其他优化"></a>其他优化</h2><ul>
-<li>只会占用 25% 的 cpu 算力处理 GC 逻辑, 保证减少对用户的影响. 若下一轮 GC 触发, 会等待上一轮执行完毕</li>
-<li>对于 tiny 对象, 直接标记黑色, 没有灰色阶段, 因为不存在引用对象</li>
-<li>采用对象池的方式, 减少 GC 的压力, 但实际上也会存在标记的压力; 如果可以放在永久标记, 就可以减少标记压力</li>
-<li>直接申请大内存(大于32k), 对 GC 来说是一个 largespan; 需要自行代码管理</li>
-</ul>
-<h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><ol>
-<li>引入分代机制, 像 JVM 那样内存分为 一级/二级/永久, 不同级别, 采用不同的计算资源</li>
-</ol>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
-<li>减少层级数 - 嵌套层级越多, 对于 GC 的压力越大; 如: chan map[string][]*string</li>
-</ol>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://wudaijun.com/2020/01/go-gc-keypoint-and-monitor/">吴戴均-Golang GC核心要点和度量方法</a></li>
-<li><a target="_blank" rel="noopener" href="https://wudaijun.com/2017/12/gc-study/">吴戴均-常见GC算法及Golang GC</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0083a90a8f7e">达菲格-Go 语言内存管理（四）</a></li>
-</ul>
-
-      
-    </div>
-    <div class="article-footer">
-      <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
+          <li><a href="/tags">All</a></li>
+          
+          <li><a href="/tags/crack/">crack</a></li>
+          
+          <li><a href="/tags/goland/">goland</a></li>
+          
+          <li><a href="/tags/golang/">golang</a></li>
+          
+          <li><a href="/tags/gc/">gc</a></li>
+          
+          <li><a href="/tags/escape-analysis/">escape-analysis</a></li>
+          
+          <li><a href="/tags/interview/">interview</a></li>
+          
+          <li><a href="/tags/scheduling/">scheduling</a></li>
+          
+          <li><a href="/tags/shell/">shell</a></li>
+          
+          <li><a href="/tags/note/">note</a></li>
+          
+        </ul>
+      </nav>
+    </header>
+    <!-- /header -->
+    <div class="article-body">
+      <div class="row">
+        
+<div class="col-md-6">
     
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="http://example.com/2020/12/26/golang-GC/" title="Golang GC" target="_blank" rel="external">http://example.com/2020/12/26/golang-GC/</a>
-    </li>
-    
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
+<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/muzig" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/muzig" target="_blank"><span class="text-dark">钢</span><small class="ml-1x">游戏后端开发</small></a></h3>
-        <div>保持热爱, 奔赴山海.</div>
-      </div>
-    </figure>
-  </div>
+     <div class="article-meta">
+       <time datetime="2020-12-19T15:22:53.000Z" itemprop="datePublished">2020-12-19</time>
+     </div>
+     <h3 class="article-title" itemprop="name">
+       <a class="article-link" href="/2020/12/19/shell-note/">Shell 笔记</a>
+     </h3>
+   </div>
+   
+   <div class="panel-footer">
+     
+      <a href="/tags/shell/" class="label label-default mb">shell</a>
+     
+      <a href="/tags/note/" class="label label-default mb">note</a>
+     
+     
+   </div>
+   
+</article>
+
+
 </div>
 
-
+      </div>
     </div>
   </article>
-  
-    
-  <section id="comments">
-  	
-      <div id="vcomments"></div>
-    
-  </section>
-
-
-  
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-  
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2020/12/27/golang-escape-analysis/" title="Golang Escape Analysis"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2020/12/26/golang-scheduling/" title="Golang Scheduling"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-  </ul>
-  
-  
-  
-  <div class="bar-right">
-    
-    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
-    
-  </div>
-  </div>
-</nav>
-  
-
-
+   
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -572,37 +452,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-
-   
-
-
-
-
-   
-    
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/valine"></script>
-  <script type="text/javascript">
-  var GUEST = ['nick', 'mail', 'link'];
-  var meta = 'nick,mail,link';
-  meta = meta.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#vcomments',
-    verify: false,
-    notify: true,
-    appId: 'iXHePYtYLDhvXVowXpCEsN7Q-gzGzoHsz',
-    appKey: 'EivU5PsoKKSfxoKo3KFoJkuh',
-    placeholder: 'Just go go',
-    avatar: 'mm',
-    meta: meta,
-    pageSize: '10' || 10,
-    visitor: false
-  });
-  </script>
-
-     
 
 
 
