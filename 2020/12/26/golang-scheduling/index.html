@@ -17,20 +17,22 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>About Me | Hexo</title>
-  <meta name="description" content="期待最好的你.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About Me">
-<meta property="og:url" content="http://example.com/about/index.html">
+  <title>Golang Scheduling | Hexo</title>
+  <meta name="description" content="熟悉 Golang 的调度原理, 能够帮助编写更加高效的并发逻辑; 同时还能避免调度相关的坑.  GPM 模型 参考链接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang Scheduling">
+<meta property="og:url" content="http://example.com/2020/12/26/golang-scheduling/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="期待最好的你.">
+<meta property="og:description" content="熟悉 Golang 的调度原理, 能够帮助编写更加高效的并发逻辑; 同时还能避免调度相关的坑.  GPM 模型 参考链接">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-12-30T02:47:04.533Z">
+<meta property="article:published_time" content="2020-12-26T15:40:47.000Z">
 <meta property="article:modified_time" content="2020-12-30T02:47:04.533Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="scheduling">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://example.com/about/index.html">
+  <link rel="canonical" href="http://example.com/2020/12/26/golang-scheduling/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -341,14 +343,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="page-" class="article article-type-page" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-golang-scheduling" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      About Me
+      Golang Scheduling
     </h1>
   
 
@@ -356,25 +358,46 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/about/index.html" class="article-date">
-	  <time datetime="2020-12-30T02:47:04.533Z" itemprop="datePublished">2020-12-30</time>
+	<a href="/2020/12/26/golang-scheduling/" class="article-date">
+	  <time datetime="2020-12-26T15:40:47.000Z" itemprop="datePublished">2020-12-26</time>
 	</a>
 </span>
         
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/golang/" rel="tag">golang</a>, <a class="article-tag-link-link" href="/tags/scheduling/" rel="tag">scheduling</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/about/index.html#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/12/26/golang-scheduling/#comments" class="article-comment-link">Comments</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>期待最好的你.</p>
+        <p>熟悉 Golang 的调度原理, 能够帮助编写更加高效的并发逻辑; 同时还能避免调度相关的坑.</p>
+<ul>
+<li><a href="#gpm-%E6%A8%A1%E5%9E%8B">GPM 模型</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
 <a id="more"></a>
 
-<h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2>
+<h2 id="GPM-模型"><a href="#GPM-模型" class="headerlink" title="GPM 模型"></a>GPM 模型</h2><ul>
+<li>G(Goroutine)</li>
+<li>P(Process)</li>
+<li>M(Machine)</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://wudaijun.com/2018/01/go-scheduler/">吴戴均-Go 调度模型</a></li>
+<li><a target="_blank" rel="noopener" href="https://wudaijun.com/2018/11/scheduler-blabla/">吴戴均-再谈调度</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/db0aea4d60ed">达菲格-Go 语言调度（一）: 系统调度</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cb6881a2661d">达菲格-Go 语言调度（二）: goroutine 调度器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ef654413f2c1">达菲格-Go 语言调度（三）: 并发</a></li>
+</ul>
+
       
     </div>
     <div class="article-footer">
@@ -383,7 +406,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://example.com/about/index.html" title="About Me" target="_blank" rel="external">http://example.com/about/index.html</a>
+      <a href="http://example.com/2020/12/26/golang-scheduling/" title="Golang Scheduling" target="_blank" rel="external">http://example.com/2020/12/26/golang-scheduling/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -426,6 +449,20 @@
 
   <nav class="bar bar-footer clearfix" data-stick-bottom>
   <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/12/26/golang-GC/" title="Golang GC"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/12/05/goland-cracking/" title="Goland 破解教程"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
   
   
   
@@ -491,6 +528,10 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+
+
+   
 
 
 

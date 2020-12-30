@@ -26,7 +26,7 @@
 <meta property="og:description" content="最近需要答辩, 收集了部分来自各方的实战面试内容, 便于巩固. 如有不当之处，请予指正 🙏.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-27T20:18:15.000Z">
-<meta property="article:modified_time" content="2020-12-29T13:03:24.508Z">
+<meta property="article:modified_time" content="2020-12-30T02:47:04.533Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="golang">
 <meta property="article:tag" content="interview">
@@ -224,7 +224,7 @@
   <div class="widget">
     <h3 class="widget-title">Tags</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/crack/" rel="tag">crack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/escape-analysis/" rel="tag">escape-analysis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gc/" rel="tag">gc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goland/" rel="tag">goland</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interview/" rel="tag">interview</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/crack/" rel="tag">crack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/escape-analysis/" rel="tag">escape-analysis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gc/" rel="tag">gc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goland/" rel="tag">goland</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/interview/" rel="tag">interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scheduling/" rel="tag">scheduling</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -234,7 +234,7 @@
   <div class="widget">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget-body tagcloud">
-      <a href="/tags/crack/" style="font-size: 13px;">crack</a> <a href="/tags/escape-analysis/" style="font-size: 13px;">escape-analysis</a> <a href="/tags/gc/" style="font-size: 13px;">gc</a> <a href="/tags/goland/" style="font-size: 13px;">goland</a> <a href="/tags/golang/" style="font-size: 14px;">golang</a> <a href="/tags/interview/" style="font-size: 13px;">interview</a>
+      <a href="/tags/crack/" style="font-size: 13px;">crack</a> <a href="/tags/escape-analysis/" style="font-size: 13px;">escape-analysis</a> <a href="/tags/gc/" style="font-size: 13px;">gc</a> <a href="/tags/goland/" style="font-size: 13px;">goland</a> <a href="/tags/golang/" style="font-size: 14px;">golang</a> <a href="/tags/interview/" style="font-size: 13px;">interview</a> <a href="/tags/scheduling/" style="font-size: 13px;">scheduling</a>
     </div>
   </div>
 
@@ -243,7 +243,7 @@
   <div class="widget">
     <h3 class="widget-title">Archive</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -296,6 +296,21 @@
               </p>
               <p class="item-date">
                 <time datetime="2020-12-26T23:32:41.000Z" itemprop="datePublished">2020-12-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2020/12/26/golang-scheduling/" class="title">Golang Scheduling</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2020-12-26T15:40:47.000Z" itemprop="datePublished">2020-12-26</time>
               </p>
             </div>
           </li>
@@ -367,6 +382,23 @@
 <p><strong>如有不当之处，请予指正 🙏.</strong></p>
 <a id="more"></a>
 
+<ul>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80%E7%AF%87">基础篇</a></li>
+<li><a href="#%E6%A6%82%E5%BF%B5%E7%AF%87">概念篇</a></li>
+<li><a href="#%E6%A1%86%E6%9E%B6%E7%AF%87">框架篇</a><ul>
+<li><a href="#%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6">开源框架</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AF%87">数据库篇</a></li>
+<li><a href="#%E7%BA%BF%E4%B8%8A%E7%BB%8F%E9%AA%8C">线上经验</a></li>
+<li><a href="#%E7%BC%96%E7%A8%8B%E9%A2%98">编程题</a><ul>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E6%A3%80%E6%9F%A5">实现字符串匹配检查</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E7%A7%8D%E6%88%96%E5%A4%9A%E7%A7%8D%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AE%97%E6%B3%95">实现一种或多种负载均衡算法</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
 <li><input disabled type="checkbox"> 尽可能完善题目答案</li>
 </ul>
@@ -376,9 +408,15 @@
 <h2 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h2><blockquote>
 <p>new 和 make 的区别?</p>
 </blockquote>
+<p>都是用于<strong>分配内存</strong>, 区别在于:</p>
+<p>前者主要用于创建返回类型的指针引用;</p>
+<p>后者只能用于 slice / map / channel 的初始化.</p>
+<p>补充: 其实 new 不常用, 相比较下字面量初始化的方式更为常用, 同时获取指针引用之后, 对于对象的赋值, 还会导致<a href="./golang-escape-analysis.md">间接赋值的逃逸问题</a></p>
 <blockquote>
 <p>函数调用传引用类型还是值类型? (涉及逃逸问题)</p>
 </blockquote>
+<p>一般采用引用类型, 少数采用值类型, 这里主要参考的是: 函数内需要或者不需要修改引用类型的值;</p>
+<p>其他情况考虑逃逸的问题, 若函数是变量, 则函数参数是引用的话, 会导致<a href="./golang-escape-analysis.md">函数变量逃逸</a>.</p>
 <blockquote>
 <p>反射的原理? (如何解析 struct 的 tag)</p>
 </blockquote>
