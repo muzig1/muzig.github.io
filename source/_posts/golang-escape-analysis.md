@@ -10,6 +10,16 @@ tags:
 
 <!-- more -->
 
+- [关于堆栈](#关于堆栈)
+- [逃逸分析](#逃逸分析)
+  - [函数变量](#函数变量)
+  - [间接赋值](#间接赋值)
+  - [interface](#interface)
+  - [channel](#channel)
+  - [可变参数](#可变参数)
+- [总结](#总结)
+- [参考链接](#参考链接)
+
 Go 语言较之 C 语言一个很大的优势就是自带 GC 功能，可 GC 并不是没有代价的。写 C 语言的时候，在一个函数内声明的变量，在函数退出后会自动释放掉，因为这些变量分配在栈上。如果你想要变量的数据能在函数退出后还能访问，就需要调用 malloc 方法在堆上申请内存，如果程序不再需要这块内存了，再调用 free 方法释放掉。Go 语言不需要你主动调用 malloc 来分配堆空间，编译器会自动分析，找出需要 malloc 的变量，使用堆内存。编译器的这个分析过程就叫做逃逸分析。
 
 ## 关于堆栈
@@ -167,21 +177,21 @@ func (u *User) Set(a []string) {
 }
 
 func SetUser(user User, a []string) User {
-	user.A = a
-	return user
+    user.A = a
+    return user
 }
 
 func BenchmarkUser(b *testing.B) {
-    // BenchmarkUser-4   	39182143	        29.0 ns/op
-	//u := new(User)
-	//for i := 0; i < b.N; i++ {
-	//	u.Set([]string{"a"})
-	//}
+    // BenchmarkUser-4      39182143            29.0 ns/op
+    //u := new(User)
+    //for i := 0; i < b.N; i++ {
+    //  u.Set([]string{"a"})
+    //}
 
-    // BenchmarkUser-4   	1000000000	         0.585 ns/op
-	for i := 0; i < b.N; i++ {
-		_ = SetUser(User{}, []string{"a"})
-	}
+    // BenchmarkUser-4   1000000000         0.585 ns/op
+    for i := 0; i < b.N; i++ {
+        _ = SetUser(User{}, []string{"a"})
+    }
 }
 ```
 
