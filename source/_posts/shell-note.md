@@ -33,6 +33,7 @@ tags:
   - [/dev/null 文件](#devnull-文件)
 - [文件引用](#文件引用)
 - [oh-my-zsh 源码](#oh-my-zsh-源码)
+- [参考链接](#参考链接)
 
 ## 基础语法
 
@@ -409,3 +410,8 @@ if [ ! "$ZSH_THEME" = ""  ]; then
   fi
 fi
 ```
+
+## 参考链接
+
+- [阮一峰的《Bash 脚本教程》](https://github.com/wangdoc/bash-tutorial)
+- [Shell 教程 | 菜鸟教程](https://www.runoob.com/linux/linux-shell.html)
