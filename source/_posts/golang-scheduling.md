@@ -35,7 +35,7 @@ tags:
 
 补充:
 
-1. 最早 go1.1 仅仅是 GM 模式, 后续 Dmitry Vyukov 为了解决**并发伸缩性**问题, 引入 p 的概念 [提案文档](../pdf/Scalable%20Go%20Scheduler%20Design%20Doc.pdf)
+1. 最早 go1.1 仅仅是 GM 模式, 后续 Dmitry Vyukov 为了解决**并发伸缩性**问题, 引入 p 的概念 [提案文档](https://github.com/muzig/muzig.github.io/blob/main/source/pdf/Scalable%20Go%20Scheduler%20Design%20Doc.pdf)
 2. g 的数量受限于 GOMAXPROCS, 即超线程数量, 一般 intel cpu 具有超线程技术, 双核四线程, 即数量为4
 3. m 的个数是不定的，由Go Runtime调整，默认最大限制为10000个
 
