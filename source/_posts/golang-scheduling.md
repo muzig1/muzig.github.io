@@ -105,7 +105,7 @@ sysmon 是一个由 runtime 启动的M，也叫监控线程，它无需P也可�
 
 ## Go 调度查看方式
 
-- [吴戴均-Go 调度模型](https://wudaijun.com/2018/01/go-scheduler/)
+- [Go 调度模型](https://wudaijun.com/2018/01/go-scheduler/)
 
 ## 总结
 
@@ -114,8 +114,8 @@ sysmon 是一个由 runtime 启动的M，也叫监控线程，它无需P也可�
 
 ## 参考链接
 
-- [吴戴均-Go 调度模型](https://wudaijun.com/2018/01/go-scheduler/)
-- [吴戴均-再谈调度](https://wudaijun.com/2018/11/scheduler-blabla/)
+- [Go 调度模型](https://wudaijun.com/2018/01/go-scheduler/)
+- [再谈调度](https://wudaijun.com/2018/11/scheduler-blabla/)
 - [达菲格-Go 语言调度（一）: 系统调度](https://www.jianshu.com/p/db0aea4d60ed)
 - [达菲格-Go 语言调度（二）: goroutine 调度器](https://www.jianshu.com/p/cb6881a2661d)
 - [达菲格-Go 语言调度（三）: 并发](https://www.jianshu.com/p/ef654413f2c1)

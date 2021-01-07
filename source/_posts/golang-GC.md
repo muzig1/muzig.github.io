@@ -69,6 +69,6 @@ Go 在 1.8 版本引入了混合写屏障，其会在赋值前，对旧数据置
 
 ## 参考链接
 
-- [吴戴均-Golang GC核心要点和度量方法](https://wudaijun.com/2020/01/go-gc-keypoint-and-monitor/)
-- [吴戴均-常见GC算法及Golang GC](https://wudaijun.com/2017/12/gc-study/)
+- [Golang GC核心要点和度量方法](https://wudaijun.com/2020/01/go-gc-keypoint-and-monitor/)
+- [常见GC算法及Golang GC](https://wudaijun.com/2017/12/gc-study/)
 - [达菲格-Go 语言内存管理（四）](https://www.jianshu.com/p/0083a90a8f7e)
