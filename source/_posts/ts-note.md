@@ -21,12 +21,18 @@ categories: 前端
   - [数组](#数组)
   - [元组 Tuple](#元组-tuple)
   - [枚举](#枚举)
+  - [Void](#void)
+  - [null & undefined](#null--undefined)
+  - [Never](#never)
+  - [Object](#object)
   - [Any](#any)
+  - [类型断言](#类型断言)
+  - [关于let](#关于let)
 
 ## TODO
 
 - [x] 速览
-- [ ] 基础类型
+- [x] 基础类型
 - [ ] 变量声明
 - [ ] 接口
 - [ ] 函数
@@ -164,5 +170,94 @@ console.log(colorName)
 // Color
 ```
 
+### Void
+
+某种程度上来说，void类型像是与any类型相反，它表示没有任何类型。 当一个函数没有返回值时，你通常会见到其返回值类型是 void：
+
+声明一个void类型的变量没有什么大用，因为你只能为它赋予undefined和null
+
+### null & undefined
+
+然而，当你指定了--strictNullChecks标记，null和undefined只能赋值给void和它们各自。 这能避免 很多常见的问题。 也许在某处你想传入一个 string或null或undefined，你可以使用联合类型string | null | undefined。 再次说明，稍后我们会介绍联合类型。
+
+> 注意：我们鼓励尽可能地使用--strictNullChecks
+
+```ts
+let u: undefined = undefined
+let n: null = null
+```
+
+### Never
+
+never类型表示的是那些永不存在的值的类型。
+
+never类型是任何类型的子类型，也可以赋值给任何类型；然而，没有类型是never的子类型或可以赋值给never类型（除了never本身之外）.
+
+即使 any也不可以赋值给never。
+
+```ts
+// 返回never的函数必须存在无法达到的终点
+function error(message: string): never {
+    throw new Error(message);
+}
+
+// 推断的返回值类型为never
+function fail() {
+    return error("Something failed");
+}
+
+// 返回never的函数必须存在无法达到的终点
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+```
+
+### Object
+
+object表示非原始类型，也就是除number，string，boolean，symbol，null或undefined之外的类型。
+
+```ts
+declare function create(o: object | null): void;
+
+create({ prop: 0 }); // OK
+create(null); // OK
+
+create(42); // Error
+create("string"); // Error
+create(false); // Error
+create(undefined); // Error
+```
+
 ### Any
 
+对于暂时无法预期的类型, 可以使用 any 去描述
+
+```ts
+let msg: any = 100
+msg = true // OK
+msg = "foo" // OK
+
+let arr: any[] = [1, "foo", "boo"]
+arr[1] = 100 // OK
+```
+
+### 类型断言
+
+有时候你会遇到这样的情况，你会比TypeScript更了解某个值的详细信息。 通常这会发生在你清楚地知道一个实体具有比它现有类型更确切的类型。
+
+> 两种形式是等价的。 至于使用哪个大多数情况下是凭个人喜好；然而，当你在TypeScript里使用JSX时，只有 as语法断言是被允许的。
+
+```ts
+// 第一种写法: 尖括号
+let someValue: any = "this is a string";
+let strLength: number = (<string>someValue).length;
+
+// 第二种写法: as语法
+let someValue: any = "this is a string";
+let strLength: number = (someValue as string).length;
+```
+
+### 关于let
+
+你可能已经注意到了，我们使用let关键字来代替大家所熟悉的JavaScript关键字var。 let关键字是JavaScript的一个新概念，TypeScript实现了它。 我们会在以后详细介绍它，很多常见的问题都可以通过使用 let来解决，所以尽可能地使用let来代替var吧。
