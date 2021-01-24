@@ -26,7 +26,7 @@
 <meta property="og:description" content="对于需要掌握前端技术, 对于 ts 的基础语法掌握也是必不可少的. 利于读懂前端源码.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-10T19:16:43.000Z">
-<meta property="article:modified_time" content="2021-01-23T13:59:07.633Z">
+<meta property="article:modified_time" content="2021-01-24T13:20:56.993Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="ts">
 <meta name="twitter:card" content="summary">
@@ -358,11 +358,27 @@
 <li><a href="#%E5%85%B3%E4%BA%8Elet">关于let</a></li>
 </ul>
 </li>
+<li><a href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E">变量声明</a><ul>
+<li><a href="#var%E5%A3%B0%E6%98%8E">var声明</a></li>
+<li><a href="#let%E5%A3%B0%E6%98%8E">let声明</a></li>
+<li><a href="#const%E5%A3%B0%E6%98%8E">const声明</a></li>
+<li><a href="#%E8%A7%A3%E6%9E%84">解构</a><ul>
+<li><a href="#%E6%95%B0%E7%BB%84%E8%A7%A3%E6%9E%84">数组解构</a></li>
+<li><a href="#%E5%AF%B9%E8%B1%A1%E8%A7%A3%E6%9E%84">对象解构</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B1%95%E5%BC%80%E4%B8%8E%E8%A7%A3%E6%9E%84%E7%9B%B8%E5%8F%8D%E6%93%8D%E4%BD%9C">展开(与解构相反操作)</a><ul>
+<li><a href="#%E6%95%B0%E7%BB%84%E5%B1%95%E5%BC%80">数组展开</a></li>
+<li><a href="#%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80">对象展开</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
 <li><input checked disabled type="checkbox"> 速览</li>
 <li><input checked disabled type="checkbox"> 基础类型</li>
-<li><input disabled type="checkbox"> 变量声明</li>
+<li><input checked disabled type="checkbox"> 变量声明</li>
 <li><input disabled type="checkbox"> 接口</li>
 <li><input disabled type="checkbox"> 函数</li>
 <li><input disabled type="checkbox"> 泛型</li>
@@ -433,6 +449,44 @@
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种写法: 尖括号</span></span><br><span class="line"><span class="keyword">let</span> someValue: <span class="built_in">any</span> = <span class="string">&quot;this is a string&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> strLength: <span class="built_in">number</span> = (&lt;<span class="built_in">string</span>&gt;someValue).length;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种写法: as语法</span></span><br><span class="line"><span class="keyword">let</span> someValue: <span class="built_in">any</span> = <span class="string">&quot;this is a string&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> strLength: <span class="built_in">number</span> = (someValue <span class="keyword">as</span> <span class="built_in">string</span>).length;</span><br></pre></td></tr></table></figure>
 
 <h3 id="关于let"><a href="#关于let" class="headerlink" title="关于let"></a>关于let</h3><p>你可能已经注意到了，我们使用let关键字来代替大家所熟悉的JavaScript关键字var。 let关键字是JavaScript的一个新概念，TypeScript实现了它。 我们会在以后详细介绍它，很多常见的问题都可以通过使用 let来解决，所以尽可能地使用let来代替var吧。</p>
+<h2 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h2><h3 id="var声明"><a href="#var声明" class="headerlink" title="var声明"></a>var声明</h3><ul>
+<li>作用域规则</li>
+<li>捕获变量特殊之处</li>
+</ul>
+<h3 id="let声明"><a href="#let声明" class="headerlink" title="let声明"></a>let声明</h3><ul>
+<li>块作用域</li>
+<li>重定义屏蔽</li>
+<li>块级作用域变量获取 - 通过闭包</li>
+</ul>
+<h3 id="const声明"><a href="#const声明" class="headerlink" title="const声明"></a>const声明</h3><ul>
+<li>声明之后不能修改; 但是可以修改对象内部值</li>
+</ul>
+<h3 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h3><h4 id="数组解构"><a href="#数组解构" class="headerlink" title="数组解构"></a>数组解构</h4><ul>
+<li>让数组变量更清晰</li>
+<li>支持函数参数解构格式</li>
+<li>支持…语法创建剩余变量</li>
+</ul>
+<h4 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h4><ul>
+<li>结构化对象成员</li>
+<li>…语法支持结构余下对象成员</li>
+<li>支持结构化之后重命名</li>
+<li>=语法支持缺省默认值</li>
+<li>函数声明支持结构对象</li>
+</ul>
+<h3 id="展开-与解构相反操作"><a href="#展开-与解构相反操作" class="headerlink" title="展开(与解构相反操作)"></a>展开(与解构相反操作)</h3><h4 id="数组展开"><a href="#数组展开" class="headerlink" title="数组展开"></a>数组展开</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> first = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">let</span> second = [<span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="comment">// 浅拷贝</span></span><br><span class="line"><span class="keyword">let</span> bothPlus = [<span class="number">0</span>, ...first, ...second, <span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="对象展开"><a href="#对象展开" class="headerlink" title="对象展开"></a>对象展开</h4><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> defaults = &#123; <span class="attr">food</span>: <span class="string">&quot;spicy&quot;</span>, <span class="attr">price</span>: <span class="string">&quot;$$&quot;</span>, <span class="attr">ambiance</span>: <span class="string">&quot;noisy&quot;</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> search = &#123; ...defaults, <span class="attr">food</span>: <span class="string">&quot;rich&quot;</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj: <span class="built_in">object</span> = &#123; <span class="attr">a</span>: <span class="string">&quot;a&quot;</span>, <span class="attr">b</span>: <span class="string">&quot;b&quot;</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> obj2: <span class="built_in">object</span> = &#123; ...obj, <span class="attr">a</span>: <span class="string">&quot;b&quot;</span> &#125;; <span class="comment">// 不会重写 a 成员值 =&gt; a = &quot;b&quot;</span></span><br><span class="line"><span class="keyword">let</span> obj2: <span class="built_in">object</span> = &#123; <span class="attr">a</span>: <span class="string">&quot;b&quot;</span>, ...obj &#125;; <span class="comment">// 会重写 a 成员值 =&gt; a = &quot;a&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(obj2);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>对象展开还有其它一些意想不到的限制</p>
+</blockquote>
+<ul>
+<li>扩展之后, 会丢失了成员函数</li>
+<li>tsc不允许展开泛型函数上的类型参数</li>
+</ul>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">  p = <span class="number">12</span>;</span><br><span class="line">  <span class="function"><span class="title">m</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> C();</span><br><span class="line"><span class="keyword">let</span> clone = &#123; ...c &#125;;</span><br><span class="line">clone.p; <span class="comment">// ok</span></span><br><span class="line">clone.m(); <span class="comment">// error!</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
