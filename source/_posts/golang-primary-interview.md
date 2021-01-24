@@ -1,5 +1,5 @@
 ---
-title: Golang 初级面试
+title: Golang 初级技术
 date: 2020-12-27 20:18:15
 tags:
     - golang
