@@ -4,6 +4,7 @@ date: 2020-12-26 15:40:47
 tags:
     - golang
     - scheduling
+categories: 后端
 ---
 
 熟悉 Golang 的调度原理, 能够帮助编写更加高效的并发逻辑; 同时还能避免调度相关的坑.

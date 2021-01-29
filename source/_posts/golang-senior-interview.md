@@ -4,6 +4,7 @@ date: 2021-01-24 21:38:41
 tags:
     - golang
     - interview
+categories: 面试
 ---
 
 之前有了初级技术, 接下来总结一下关于中高级开发的技术要求

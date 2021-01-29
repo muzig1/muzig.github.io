@@ -3,6 +3,7 @@ title: raspberryPi 入门
 date: 2021-01-23 21:54:28
 tags:
     - raspberryPi
+categories: 工具
 ---
 
 之前在储备前端技术, 目前使用树莓派来搭建开发环境, 便于测试.

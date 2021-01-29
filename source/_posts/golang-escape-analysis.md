@@ -4,6 +4,7 @@ date: 2020-12-27 14:42:27
 tags:
     - golang
     - escape-analysis
+categories: 后端
 ---
 
 了解 Golang 语言的逃逸机制, 有助于在编写代码的时候绕开逃逸分析的缺陷, 从而编写更加高效的代码.

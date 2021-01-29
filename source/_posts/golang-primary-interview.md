@@ -4,6 +4,7 @@ date: 2020-12-27 20:18:15
 tags:
     - golang
     - interview
+categories: 面试   
 ---
 
 最近需要答辩, 收集了部分来自各方的实战面试内容, 便于巩固.
