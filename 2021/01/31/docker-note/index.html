@@ -17,16 +17,22 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Archive | Hexo</title>
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://muzig.github.io/archives/page/2/index.html">
+  <title>Docker 笔记 | Hexo</title>
+  <meta name="description" content="掌握其在微服务开发中的运用.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 笔记">
+<meta property="og:url" content="http://muzig.github.io/2021/01/31/docker-note/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="掌握其在微服务开发中的运用.">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-01-31T19:54:25.000Z">
+<meta property="article:modified_time" content="2021-01-31T13:50:54.837Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="微服务">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://muzig.github.io/archives/page/2/index.html">
+  <link rel="canonical" href="http://muzig.github.io/2021/01/31/docker-note/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -286,104 +292,195 @@
   
   
 <main class="main" role="main">
-  	<article class="content article article-archives article-type-list" itemscope="">
-	    <header class="article-header">
-	      <h1 itemprop="title">Archive</h1>
-	      <p class="text-muted">Total 4 articles</p>
-	    </header>
-	    <div class="article-body">
-	      
-  
-  
+  <div class="content">
+  <article id="post-docker-note" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
-    
+    <div class="article-header">
       
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Docker 笔记
+    </h1>
+  
+
       
-      <section class="panel panel-default b-no">
-        <div class="panel-heading" role="tab">
-          <h3 class="panel-title">
-            <a data-toggle="collapse" href="#collapse2020" aria-expanded="true">
-              <i class="icon icon-calendar-plus text-active"></i><i class="icon icon-calendar-minus text"></i>
-              2020
-            </a>
-            <!-- <a href="/archives/2020" class="archive-year">2020</a> -->
-          </h3>
-        </div>
-        <div id="collapse2020" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading2020">
-        <div class="panel-body">
-          <div class="collection">
-    
-    
-<a href="/2020/12/26/golang-GC/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-12-26T23:32:41.000Z" itemprop="datePublished">2020-12-26</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Golang GC
-</a>
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/01/31/docker-note/" class="article-date">
+	  <time datetime="2021-01-31T19:54:25.000Z" itemprop="datePublished">2021-01-31</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/docker/" rel="tag">docker</a>, <a class="article-tag-link-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a>
+  </span>
 
 
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/01/31/docker-note/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>掌握其在微服务开发中的运用.</p>
+<a id="more"></a>
+
+<ul>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8">容器使用</a></li>
+<li><a href="#%E4%BB%93%E5%BA%93%E8%BF%90%E7%94%A8">仓库运用</a><ul>
+<li><a href="#%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93">私有仓库</a></li>
+<li><a href="#%E9%AB%98%E7%BA%A7%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE">高级仓库配置</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86">数据管理</a><ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%8D%B7">数据卷</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD%E7%9B%AE%E5%BD%95">挂载目录</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6">挂载单个文件</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>基本:</p>
+<ul>
+<li><input disabled type="checkbox"> 基本概念</li>
+<li><input disabled type="checkbox"> 镜像使用</li>
+<li><input checked disabled type="checkbox"> 容器使用</li>
+<li><input checked disabled type="checkbox"> 仓库运用</li>
+</ul>
+<p>进阶:</p>
+<ul>
+<li><input checked disabled type="checkbox"> 数据管理</li>
+<li><input disabled type="checkbox"> 网络配置</li>
+<li><input disabled type="checkbox"> Docker Buildx</li>
+<li><input disabled type="checkbox"> Docker Compose</li>
+<li><input disabled type="checkbox"> Swarm Mode</li>
+<li><input disabled type="checkbox"> 安全</li>
+<li><input disabled type="checkbox"> 底层实现</li>
+</ul>
+<p>实战:</p>
+<ul>
+<li><input disabled type="checkbox"> ETCD项目</li>
+<li><input disabled type="checkbox"> CoreOS项目</li>
+<li><input disabled type="checkbox"> k8s</li>
+<li><input disabled type="checkbox"> 容器与云计算</li>
+<li><input disabled type="checkbox"> CI/CD</li>
+<li><input disabled type="checkbox"> 最佳实践</li>
+</ul>
+<h2 id="容器使用"><a href="#容器使用" class="headerlink" title="容器使用"></a>容器使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run</span><br><span class="line">docker stop</span><br><span class="line">docker logs</span><br><span class="line">docker rm</span><br><span class="line">docker prune <span class="comment"># 清理所有停掉的container</span></span><br><span class="line"></span><br><span class="line">docker attach</span><br><span class="line">docker <span class="built_in">exec</span> -it &lt;id&gt; bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">export</span> &lt;id&gt; &gt; ubuntu.tar</span><br><span class="line">cat ubuntu.tar | docker import - <span class="built_in">test</span>/ubuntu:v1.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 区别在于是否丢弃历史记录以及元数据信息</span></span><br><span class="line">docker import</span><br><span class="line">docker load</span><br></pre></td></tr></table></figure>
+
+<h2 id="仓库运用"><a href="#仓库运用" class="headerlink" title="仓库运用"></a>仓库运用</h2><ul>
+<li>仓库(Repository)</li>
+<li>注册服务器(Registry)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">docker <span class="built_in">logout</span></span><br><span class="line"></span><br><span class="line">docker search</span><br><span class="line">docker pull</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送image</span></span><br><span class="line">docker tag ubuntu:18.04 username/ubuntu:18.04</span><br><span class="line">docker push username/ubuntu:18.04</span><br><span class="line">docker search username</span><br></pre></td></tr></table></figure>
+
+<h3 id="私有仓库"><a href="#私有仓库" class="headerlink" title="私有仓库"></a>私有仓库</h3><p>工具: docker-registry</p>
+<h3 id="高级仓库配置"><a href="#高级仓库配置" class="headerlink" title="高级仓库配置"></a>高级仓库配置</h3><p>工具: Docker Compose</p>
+<p>拥有权限认证, TLS的私有仓库</p>
+<p>略…</p>
+<h2 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h2><ul>
+<li>数据卷(Volumes) - 可供一个或多个容器使用的特殊目录; 绕过UFS</li>
+<li>挂载主机目录(Bind Mounts)</li>
+</ul>
+<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker volume create my-vol</span><br><span class="line">docker volume rm my-vol</span><br><span class="line"></span><br><span class="line">docker volume ls</span><br><span class="line">docker volume prune</span><br><span class="line"></span><br><span class="line">docker volume inspect my-vol</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name web \</span><br><span class="line">--mount <span class="built_in">source</span>=myvol,target=/webapp \</span><br><span class="line">training/webapp \</span><br><span class="line">python app.py</span><br><span class="line"></span><br><span class="line">docker inspect web</span><br></pre></td></tr></table></figure>
+
+<h3 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name web \</span><br><span class="line">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=/src/webapp,target=/opt/webapp,<span class="built_in">readonly</span> \ <span class="comment"># source代表宿主机; target代表容器位置; readonly代表容器位置只读</span></span><br><span class="line">training/webapp \</span><br><span class="line">python app.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="挂载单个文件"><a href="#挂载单个文件" class="headerlink" title="挂载单个文件"></a>挂载单个文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这样就可以记录容器的命令使用情况</span></span><br><span class="line">docker run --rm -it \</span><br><span class="line">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=<span class="variable">$HOME</span>/.bash_history,target=/root/.bash_history \</span><br><span class="line">ubuntu:18.04 \</span><br><span class="line">bash</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://muzig.github.io/2021/01/31/docker-note/" title="Docker 笔记" target="_blank" rel="external">http://muzig.github.io/2021/01/31/docker-note/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/muzig" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/muzig" target="_blank"><span class="text-dark">钢</span><small class="ml-1x">游戏后端开发</small></a></h3>
+        <div>保持热爱, 奔赴山海.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
   
     
-    
-    
-<a href="/2020/12/26/golang-scheduling/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-12-26T15:40:47.000Z" itemprop="datePublished">2020-12-26</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Golang Scheduling
-</a>
-
-
-  
-    
-    
-    
-<a href="/2020/12/19/shell-note/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-12-19T15:22:53.000Z" itemprop="datePublished">2020-12-19</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Shell 笔记
-</a>
-
-
-  
-    
-    
-    
-<a href="/2020/12/05/goland-cracking/" class="collection-item" target="_blank" itemprop="url">
-  <time datetime="2020-12-05T12:58:28.000Z" itemprop="datePublished">2020-12-05</time>
-  <span>&nbsp;&nbsp;&nbsp;</span> Goland 破解教程
-</a>
-
-
-  
-  
-    </div></div></div></section>
-  
-
-	    </div>
-  	</article>
+  <section id="comments">
   	
+      <div id="vcomments"></div>
     
-    <nav class="bar bar-footer clearfix" data-stick-bottom>
-        <div class="bar-inner">
-        <ul class="pager pull-left">
-            
-            <li class="prev">
-                <a href="/archives/">
-                    <i class="icon icon-angle-left"></i>
-                    Prev
-                </a>
-            </li>
-            
-            
-            <li class="next disabled">
-                <a href="javascript:;">
-                    Next
-                    <i class="icon icon-angle-right"></i>                    
-                </a>
-            </li>
-            
-        </ul>
-        <div class="total-article bar-right">Page 2 of 2</div>
-        </div>
-    </nav>
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
     
- 	
+    <li class="prev">
+      <a href="/2021/01/31/mongodb-note/" title="MongoDB 笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/01/30/tmux/" title="tmux 快速指北"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -438,6 +535,37 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'iXHePYtYLDhvXVowXpCEsN7Q-gzGzoHsz',
+    appKey: 'EivU5PsoKKSfxoKo3KFoJkuh',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
 
 
 

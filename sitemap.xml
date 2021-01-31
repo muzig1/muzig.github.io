@@ -9,7 +9,14 @@
   </url>
   
   <url>
-    <loc>http://muzig.github.io/2020/12/05/goland-cracking/</loc>
+    <loc>http://muzig.github.io/2021/01/31/docker-note/</loc>
+    
+    <lastmod>2021-01-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://muzig.github.io/2020/12/26/golang-GC/</loc>
     
     <lastmod>2021-01-31</lastmod>
     
@@ -44,14 +51,21 @@
   </url>
   
   <url>
-    <loc>http://muzig.github.io/2021/01/23/raspberryPi-note/</loc>
+    <loc>http://muzig.github.io/2021/01/31/mongodb-note/</loc>
     
     <lastmod>2021-01-31</lastmod>
     
   </url>
   
   <url>
-    <loc>http://muzig.github.io/2020/12/26/golang-GC/</loc>
+    <loc>http://muzig.github.io/2020/12/05/goland-cracking/</loc>
+    
+    <lastmod>2021-01-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://muzig.github.io/2020/12/19/shell-note/</loc>
     
     <lastmod>2021-01-31</lastmod>
     
@@ -100,7 +114,7 @@
   </url>
   
   <url>
-    <loc>http://muzig.github.io/2020/12/19/shell-note/</loc>
+    <loc>http://muzig.github.io/2021/01/23/raspberryPi-note/</loc>
     
     <lastmod>2021-01-31</lastmod>
     
@@ -114,6 +128,20 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://muzig.github.io/tags/docker/</loc>
+    <lastmod>2021-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://muzig.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2021-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>http://muzig.github.io/tags/crack/</loc>
@@ -159,6 +187,13 @@
   
   <url>
     <loc>http://muzig.github.io/tags/scheduling/</loc>
+    <lastmod>2021-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://muzig.github.io/tags/mongodb/</loc>
     <lastmod>2021-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -216,13 +251,6 @@
 
   
   <url>
-    <loc>http://muzig.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2021-01-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://muzig.github.io/categories/%E5%90%8E%E7%AB%AF/</loc>
     <lastmod>2021-01-31</lastmod>
     <changefreq>daily</changefreq>
@@ -230,7 +258,21 @@
   </url>
   
   <url>
+    <loc>http://muzig.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2021-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://muzig.github.io/categories/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2021-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://muzig.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2021-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
