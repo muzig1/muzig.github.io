@@ -1,9 +1,9 @@
 ---
-title: oh-my-mac
+title: My Mac
 date: 2021-02-03 23:38:39
 tags:
     - mac
-categories: Mac
+categories: Mac
 ---
 
 整理从0到1使用Mac系统, 提高生产力第一步, 学会良好的使用工具.
@@ -26,23 +26,24 @@ categories: Mac
 
 ## Terminal
 
-brew
-iTerm2
-Ohmyzsh
-Vim
-Git
-tmux
+- brew
+- iTerm2
+- Ohmyzsh
+- Vim
+- Git
+- tmux
 
 ## 软件篇
 
-appcleaner
-sogouinput
-Google-chrome
-wechat
-Qq
-neteasemusic
-Eventnote
-dingtalk
+- appcleaner
+- sogouinput
+- Google-chrome
+- wechat
+- Qq
+- neteasemusic
+- Eventnote
+- dingtalk
+- [Dozer](https://github.com/Mortennn/Dozer): 隐藏图标(开源软件)
 
 ## 开发篇
 
