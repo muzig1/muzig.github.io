@@ -16,6 +16,7 @@ categories: Mac
 - [Terminal](#terminal)
 - [软件篇](#软件篇)
 - [开发篇](#开发篇)
+  - [Goland](#goland)
 
 ## TODO
 
@@ -45,4 +46,11 @@ dingtalk
 
 ## 开发篇
 
-goland
+### Goland
+
+插件篇:
+
+ideaVim快捷键冲突, 或者不生效的修改.
+
+![1](../img/goland-setting.png)
+![2](../img/goland-setting2.png)
