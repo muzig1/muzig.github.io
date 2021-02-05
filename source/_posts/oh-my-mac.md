@@ -44,6 +44,7 @@ categories: Mac
 - Eventnote
 - dingtalk
 - [Dozer](https://github.com/Mortennn/Dozer): 隐藏图标(开源软件)
+- tencent-lemon
 
 ## 开发篇
 
