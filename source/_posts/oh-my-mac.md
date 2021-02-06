@@ -74,6 +74,10 @@ brew install git-lfs
 brew install tmux
 
 brew install vim
+
+brew install wget
+brew install telnet
+brew install rlwrap
 ```
 
 ## 软件篇
@@ -187,3 +191,4 @@ export PATH=$PATH:$HOME/go/bin
 ## 友情链接
 
 - [左岸博客 - zsh插件推荐](https://www.zrahh.com/archives/167.html)
+- [FungLeo - mac 下使用 iTerm 终端工具无法使用 alt+b 和 alt+f 快捷键的解决方法](https://blog.csdn.net/fungleo/article/details/78055808)

@@ -46,8 +46,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 - Put this at the bottom of ~/.tmux.conf ($XDG_CONFIG_HOME/tmux/tmux.conf works too):
 
 ```bash
+# 推荐配置
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux/oh-my-tmux/
 cp ~/.tmux/oh-my-tmux/.tmux.conf ~/
+
+# 自定义配置
+wget https://github.com/muzig/oh-my-mac/blob/main/tmux/.tmux.conf ~/.tmux.conf.local
 ```
 
 - Reload TMUX environment so TPM is sourced:
