@@ -26,7 +26,7 @@
 <meta property="og:description" content="如果您用过screen的话, 相比知道它的好处, 这里记录一款类似的工具tmux.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-30T09:52:48.000Z">
-<meta property="article:modified_time" content="2021-02-05T00:05:50.281Z">
+<meta property="article:modified_time" content="2021-02-06T13:20:55.256Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="tmux">
 <meta name="twitter:card" content="summary">
@@ -362,7 +362,7 @@
 <ul>
 <li>Put this at the bottom of ~/.tmux.conf ($XDG_CONFIG_HOME/tmux/tmux.conf works too):</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/gpakosz/.tmux.git ~/.tmux/oh-my-tmux/</span><br><span class="line">cp ~/.tmux/oh-my-tmux/.tmux.conf ~/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推荐配置</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/gpakosz/.tmux.git ~/.tmux/oh-my-tmux/</span><br><span class="line">cp ~/.tmux/oh-my-tmux/.tmux.conf ~/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义配置</span></span><br><span class="line">wget https://github.com/muzig/oh-my-mac/blob/main/tmux/.tmux.conf ~/.tmux.conf.local</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Reload TMUX environment so TPM is sourced:</li>
