@@ -17,21 +17,16 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>tmux 快速指北 | Hexo</title>
-  <meta name="description" content="如果您用过screen的话, 相比知道它的好处, 这里记录一款类似的工具tmux.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="tmux 快速指北">
-<meta property="og:url" content="http://muzig.github.io/2021/01/30/tmux/index.html">
+  <title>Tag: scp | Hexo</title>
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://muzig.github.io/tags/scp/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="如果您用过screen的话, 相比知道它的好处, 这里记录一款类似的工具tmux.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-01-30T09:52:48.000Z">
-<meta property="article:modified_time" content="2021-03-21T11:09:16.016Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="tmux">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://muzig.github.io/2021/01/30/tmux/index.html">
+  <link rel="canonical" href="http://muzig.github.io/tags/scp/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -289,180 +284,94 @@
 </aside>
 
   
-  
-<main class="main" role="main">
-  <div class="content">
-  <article id="post-tmux" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <main class="main" role="main">
+  <article class="content article article-tags post-type-list" itemscope="">
+    <header class="article-header">
+      <h1 itemprop="name" class="hidden-xs">Tag: scp</h1>
+      <p class="text-muted hidden-xs">Total 1 articles</p>
+      <nav role="navigation" id="nav-main" class="okayNav">
+        <ul>
+          <li><a href="/tags">All</a></li>
+          
+          <li><a href="/tags/docker/">docker</a></li>
+          
+          <li><a href="/tags/微服务/">微服务</a></li>
+          
+          <li><a href="/tags/git/">git</a></li>
+          
+          <li><a href="/tags/crack/">crack</a></li>
+          
+          <li><a href="/tags/goland/">goland</a></li>
+          
+          <li><a href="/tags/golang/">golang</a></li>
+          
+          <li><a href="/tags/gc/">gc</a></li>
+          
+          <li><a href="/tags/escape-analysis/">escape-analysis</a></li>
+          
+          <li><a href="/tags/interview/">interview</a></li>
+          
+          <li><a href="/tags/scheduling/">scheduling</a></li>
+          
+          <li><a href="/tags/mongodb/">mongodb</a></li>
+          
+          <li><a href="/tags/mac/">mac</a></li>
+          
+          <li><a href="/tags/raspberryPi/">raspberryPi</a></li>
+          
+          <li><a href="/tags/scp/">scp</a></li>
+          
+          <li><a href="/tags/shell/">shell</a></li>
+          
+          <li><a href="/tags/note/">note</a></li>
+          
+          <li><a href="/tags/效率/">效率</a></li>
+          
+          <li><a href="/tags/vue-js/">vue.js</a></li>
+          
+          <li><a href="/tags/tmux/">tmux</a></li>
+          
+          <li><a href="/tags/ts/">ts</a></li>
+          
+          <li><a href="/tags/uni-app/">uni-app</a></li>
+          
+          <li><a href="/tags/vue/">vue</a></li>
+          
+        </ul>
+      </nav>
+    </header>
+    <!-- /header -->
+    <div class="article-body">
+      <div class="row">
+        
+<div class="col-md-6">
     
-    <div class="article-header">
-      
-        
-  
-    <h1 class="article-title" itemprop="name">
-      tmux 快速指北
-    </h1>
-  
-
-      
-      <div class="article-meta">
-        <span class="article-date">
-    <i class="icon icon-calendar-check"></i>
-	<a href="/2021/01/30/tmux/" class="article-date">
-	  <time datetime="2021-01-30T09:52:48.000Z" itemprop="datePublished">2021-01-30</time>
-	</a>
-</span>
-        
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
-  </span>
-
-        
-  <span class="article-tag">
-    <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/tmux/" rel="tag">tmux</a>
-  </span>
-
-
-        
-
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/01/30/tmux/#comments" class="article-comment-link">Comments</a></span>
-        
-      </div>
-    </div>
-    <div class="article-entry marked-body" itemprop="articleBody">
-      
-        <p>如果您用过screen的话, 相比知道它的好处, 这里记录一款类似的工具tmux.</p>
-<a id="more"></a>
-
-<ul>
-<li><a href="#todo">TODO</a></li>
-<li><a href="#-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA">🚀 快速搭建</a></li>
-<li><a href="#%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE">常用快捷键</a></li>
-<li><a href="#%E6%8F%92%E4%BB%B6">插件</a><ul>
-<li><a href="#oh-my-tmux">oh-my-tmux</a></li>
-<li><a href="#tmux-resurrect">tmux-resurrect</a></li>
-</ul>
-</li>
-<li><a href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">友情链接</a></li>
-</ul>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
-<li><input disabled type="checkbox"> 常用快捷键</li>
-</ul>
-<h2 id="🚀-快速搭建"><a href="#🚀-快速搭建" class="headerlink" title="🚀 快速搭建"></a>🚀 快速搭建</h2><ul>
-<li>Install Tmux:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mac</span></span><br><span class="line">brew install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># linux - RedHat</span></span><br><span class="line">yum install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># linux - Debian</span></span><br><span class="line">apt install tmux</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Clone TPM:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Put this at the bottom of ~/.tmux.conf ($XDG_CONFIG_HOME/tmux/tmux.conf works too):</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推荐配置</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/gpakosz/.tmux.git ~/.tmux/oh-my-tmux/</span><br><span class="line">cp ~/.tmux/oh-my-tmux/.tmux.conf ~/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义配置</span></span><br><span class="line">wget https://github.com/muzig/oh-my-mac/blob/main/tmux/.tmux.conf ~/.tmux.conf.local</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Reload TMUX environment so TPM is sourced:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># type this in terminal if tmux is already running</span></span><br><span class="line">$ tmux <span class="built_in">source</span> ~/.tmux.conf</span><br></pre></td></tr></table></figure>
-
-<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="oh-my-tmux"><a href="#oh-my-tmux" class="headerlink" title="oh-my-tmux"></a>oh-my-tmux</h3><p>作用: 通用tmux配置搭配</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/gpakosz/.tmux.git</span><br><span class="line">ln -s -f .tmux/.tmux.conf</span><br><span class="line">cp .tmux/.tmux.conf.local .</span><br></pre></td></tr></table></figure>
-
-<h3 id="tmux-resurrect"><a href="#tmux-resurrect" class="headerlink" title="tmux-resurrect"></a>tmux-resurrect</h3><p>作用: 保存tmux的layout, 便于重启电脑快速恢复.</p>
-<ul>
-<li>Add plugin to the list of TPM plugins in .tmux.conf:</li>
-<li>Hit prefix + I to fetch the plugin and source it. You should now be able to use the plugin.</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -g @plugin <span class="string">&#x27;tmux-plugins/tmux-resurrect&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/tmux-plugins/tpm">TPM</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/gpakosz/.tmux">oh-my-tmux</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/tmux-plugins/tmux-resurrect">tmux-resurrect</a></li>
-</ul>
-
-      
-    </div>
-    <div class="article-footer">
-      <blockquote class="mt-2x">
-  <ul class="post-copyright list-unstyled">
-    
-    <li class="post-copyright-link hidden-xs">
-      <strong>本文链接：</strong>
-      <a href="http://muzig.github.io/2021/01/30/tmux/" title="tmux 快速指北" target="_blank" rel="external">http://muzig.github.io/2021/01/30/tmux/</a>
-    </li>
-    
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-</blockquote>
-
-
-<div class="panel panel-default panel-badger">
+<article class="panel panel-default hover-shadow hover-grow" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="panel-body">
-    <figure class="media">
-      <div class="media-left">
-        <a href="https://github.com/muzig" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
-        </a>
-      </div>
-      <div class="media-body">
-        <h3 class="media-heading"><a href="https://github.com/muzig" target="_blank"><span class="text-dark">钢</span><small class="ml-1x">游戏后端开发</small></a></h3>
-        <div>保持热爱, 奔赴山海.</div>
-      </div>
-    </figure>
-  </div>
+     <div class="article-meta">
+       <time datetime="2021-03-21T18:48:48.000Z" itemprop="datePublished">2021-03-21</time>
+     </div>
+     <h3 class="article-title" itemprop="name">
+       <a class="article-link" href="/2021/03/21/scp/">Mac 同步文件到 Linux</a>
+     </h3>
+   </div>
+   
+   <div class="panel-footer">
+     
+      <a href="/tags/scp/" class="label label-default mb">scp</a>
+     
+     
+   </div>
+   
+</article>
+
+
 </div>
 
-
+      </div>
     </div>
   </article>
-  
-    
-  <section id="comments">
-  	
-      <div id="vcomments"></div>
-    
-  </section>
-
-
-  
-</div>
-
-  <nav class="bar bar-footer clearfix" data-stick-bottom>
-  <div class="bar-inner">
-  
-  <ul class="pager pull-left">
-    
-    <li class="prev">
-      <a href="/2021/01/31/docker-note/" title="Docker 笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
-    
-    <li class="next">
-      <a href="/2021/01/29/the-documentary-of-vue/" title="vue.js 纪录片"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
-    </li>
-    
-    
-  </ul>
-  
-  
-  
-  <div class="bar-right">
-    
-    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
-    
-  </div>
-  </div>
-</nav>
-  
-
-
+   
 </main>
 
   <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
@@ -517,37 +426,6 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
-
-   
-
-
-
-
-   
-    
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/valine"></script>
-  <script type="text/javascript">
-  var GUEST = ['nick', 'mail', 'link'];
-  var meta = 'nick,mail,link';
-  meta = meta.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#vcomments',
-    verify: false,
-    notify: true,
-    appId: 'iXHePYtYLDhvXVowXpCEsN7Q-gzGzoHsz',
-    appKey: 'EivU5PsoKKSfxoKo3KFoJkuh',
-    placeholder: 'Just go go',
-    avatar: 'mm',
-    meta: meta,
-    pageSize: '10' || 10,
-    visitor: false
-  });
-  </script>
-
-     
 
 
 
