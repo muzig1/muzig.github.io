@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        // necessary
+        "shan.code-settings-sync",
+        "vscode-icons-team.vscode-icons",
+        "vscodevim.vim",
+        // theme
+        "github.github-vscode-theme",
+        // golang
+        "golang.go",
+        // javascript
+        "rvest.vs-code-prettier-eslint",
+        // vue.js
+        "octref.vetur"
+    ]
+}
