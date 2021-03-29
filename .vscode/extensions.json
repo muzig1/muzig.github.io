@@ -4,6 +4,9 @@
         "shan.code-settings-sync",
         "vscode-icons-team.vscode-icons",
         "vscodevim.vim",
+        // markdown
+        "yzhang.markdown-all-in-one",
+        "shd101wyy.markdown-preview-enhanced",
         // theme
         "github.github-vscode-theme",
         // golang

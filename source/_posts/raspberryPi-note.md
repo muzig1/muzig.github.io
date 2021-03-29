@@ -47,6 +47,8 @@ categories: 工具
 # 在Mac OS下SD卡的设备名一般为rdisk*，可以用diskutil list命令查看。
 # 在Linux下SD卡的设备名一般为sd*，可以用lsblk命令查看。
 sudo dd bs=1m if=<下载的镜像.img> of=/dev/<SD卡设备名> conv=sync
+# 报错提醒: dd: /dev/disk2: Resource busy
+# 则执行 diskutil umountDisk /dev/disk2
 ```
 
 ## 初次启动
