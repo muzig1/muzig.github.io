@@ -72,3 +72,4 @@ sudo passwd root
 ## 友情链接
 
 - [如何给树莓派安装操作系统](https://zhuanlan.zhihu.com/p/59027897)
+- [如何方便的烧录镜像](https://shumeipai.nxez.com/2020/03/07/raspberry-pi-imager-imaging-utility.html)
