@@ -1,12 +1,12 @@
 ---
-title: Git
+title: Git 问题收集
 date: 2021-02-17 11:06:42
 tags:
     - git
 categories: 工具
 ---
 
-Git 的踩坑总结
+收集一些不常见关于 git 的一些问题, 以及处理办法.
 
 <!-- more -->
 
