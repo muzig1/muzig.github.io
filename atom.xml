@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://muzig.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://muzig.github.io/"/>
+  <updated>2021-10-05T09:10:00.617Z</updated>
+  <id>http://muzig.github.io/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初次见面 树莓派（raspberry Pi）</title>
+    <link href="http://muzig.github.io/2021/01/23/raspberryPi-note/"/>
+    <id>http://muzig.github.io/2021/01/23/raspberryPi-note/</id>
+    <published>2021-01-23T21:54:28.000Z</published>
+    <updated>2021-10-05T09:10:00.617Z</updated>
+    
+    <content type="html"><![CDATA[<p>带你速览树莓派相关的内容</p><a id="more"></a><ul><li><a href="#todo">TODO</a></li><li><a href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87">前期准备</a></li><li><a href="#%E7%83%A7%E5%BD%95%E7%B3%BB%E7%BB%9F">烧录系统</a></li><li><a href="#%E5%88%9D%E5%A7%8B%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE">初始系统配置</a></li><li><a href="#%E5%91%BD%E4%BB%A4">命令</a></li><li><a href="#%E5%85%B6%E4%BB%96%E5%AE%9E%E8%B7%B5">其他实践</a><ul><li><a href="#%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BAlamp%E7%8E%AF%E5%A2%83">如何搭建LAMP环境</a></li><li><a href="#%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83">如何搭建开发环境</a></li></ul></li><li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li></ul><h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul><li><input disabled type="checkbox"> 完善文档</li></ul><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ol><li>树莓派4b</li><li>设备电源</li><li>microHDMI转HDMI 或 转VGA</li><li>读卡器</li><li>micro-SD卡(8G,16G, 32G) 任意即可</li><li>键盘</li><li>显示器</li></ol><h2 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h2><ol><li><a href="https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit">下载iso镜像</a></li><li>烧录进micro-sd</li><li>将micro-sd插入树莓派(不是用读卡器插入usb接口, 而是有一个专门的插入micro-sd的位置)</li><li>直接启动, 即可进入界面</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mac 烧录方式</span></span><br><span class="line"><span class="comment"># 在Mac OS下SD卡的设备名一般为rdisk*，可以用diskutil list命令查看。</span></span><br><span class="line"><span class="comment"># 在Linux下SD卡的设备名一般为sd*，可以用lsblk命令查看。</span></span><br><span class="line">sudo dd bs=1m <span class="keyword">if</span>=&lt;下载的镜像.img&gt; of=/dev/&lt;SD卡设备名&gt; conv=sync</span><br><span class="line"></span><br><span class="line"><span class="comment"># 报错提醒: dd: /dev/disk2: Resource busy</span></span><br><span class="line"><span class="comment"># 则执行 diskutil umountDisk /dev/disk2</span></span><br></pre></td></tr></table></figure><h2 id="初始系统配置"><a href="#初始系统配置" class="headerlink" title="初始系统配置"></a>初始系统配置</h2><ol><li>设置区域, 开启wifi功能</li><li>连接wifi</li><li>设置root密码</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置相关参数</span></span><br><span class="line">sudo raspi-config</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置root密码</span></span><br><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure><h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><h2 id="其他实践"><a href="#其他实践" class="headerlink" title="其他实践"></a>其他实践</h2><h3 id="如何搭建LAMP环境"><a href="#如何搭建LAMP环境" class="headerlink" title="如何搭建LAMP环境"></a>如何搭建LAMP环境</h3><h3 id="如何搭建开发环境"><a href="#如何搭建开发环境" class="headerlink" title="如何搭建开发环境"></a>如何搭建开发环境</h3><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul><li><a href="https://zhuanlan.zhihu.com/p/59027897">如何给树莓派安装操作系统</a></li><li><a href="https://shumeipai.nxez.com/2020/03/07/raspberry-pi-imager-imaging-utility.html">如何方便的烧录镜像</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;带你速览树莓派相关的内容&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="工具" scheme="http://muzig.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="raspberryPi" scheme="http://muzig.github.io/tags/raspberryPi/"/>
+    
+  </entry>
+  
+</feed>
