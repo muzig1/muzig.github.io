@@ -1,0 +1,72 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>Docker 笔记</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Haojen's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article id="page"><h1>Docker 笔记</h1><p>掌握其在微服务开发中的运用.</p>
+<a id="more"></a>
+
+<ul>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8">容器使用</a></li>
+<li><a href="#%E4%BB%93%E5%BA%93%E8%BF%90%E7%94%A8">仓库运用</a><ul>
+<li><a href="#%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93">私有仓库</a></li>
+<li><a href="#%E9%AB%98%E7%BA%A7%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE">高级仓库配置</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86">数据管理</a><ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%8D%B7">数据卷</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD%E7%9B%AE%E5%BD%95">挂载目录</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD%E5%8D%95%E4%B8%AA%E6%96%87%E4%BB%B6">挂载单个文件</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>基本:</p>
+<ul>
+<li><input disabled type="checkbox"> 基本概念</li>
+<li><input disabled type="checkbox"> 镜像使用</li>
+<li><input checked disabled type="checkbox"> 容器使用</li>
+<li><input checked disabled type="checkbox"> 仓库运用</li>
+</ul>
+<p>进阶:</p>
+<ul>
+<li><input checked disabled type="checkbox"> 数据管理</li>
+<li><input disabled type="checkbox"> 网络配置</li>
+<li><input disabled type="checkbox"> Docker Buildx</li>
+<li><input disabled type="checkbox"> Docker Compose</li>
+<li><input disabled type="checkbox"> Swarm Mode</li>
+<li><input disabled type="checkbox"> 安全</li>
+<li><input disabled type="checkbox"> 底层实现</li>
+</ul>
+<p>实战:</p>
+<ul>
+<li><input disabled type="checkbox"> ETCD项目</li>
+<li><input disabled type="checkbox"> CoreOS项目</li>
+<li><input disabled type="checkbox"> k8s</li>
+<li><input disabled type="checkbox"> 容器与云计算</li>
+<li><input disabled type="checkbox"> CI/CD</li>
+<li><input disabled type="checkbox"> 最佳实践</li>
+</ul>
+<h2 id="容器使用"><a href="#容器使用" class="headerlink" title="容器使用"></a>容器使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run</span><br><span class="line">docker stop</span><br><span class="line">docker logs</span><br><span class="line">docker rm</span><br><span class="line">docker prune <span class="comment"># 清理所有停掉的container</span></span><br><span class="line"></span><br><span class="line">docker attach</span><br><span class="line">docker <span class="built_in">exec</span> -it &lt;id&gt; bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">export</span> &lt;id&gt; &gt; ubuntu.tar</span><br><span class="line">cat ubuntu.tar | docker import - <span class="built_in">test</span>/ubuntu:v1.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 区别在于是否丢弃历史记录以及元数据信息</span></span><br><span class="line">docker import</span><br><span class="line">docker load</span><br></pre></td></tr></table></figure>
+
+<h2 id="仓库运用"><a href="#仓库运用" class="headerlink" title="仓库运用"></a>仓库运用</h2><ul>
+<li>仓库(Repository)</li>
+<li>注册服务器(Registry)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">docker <span class="built_in">logout</span></span><br><span class="line"></span><br><span class="line">docker search</span><br><span class="line">docker pull</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送image</span></span><br><span class="line">docker tag ubuntu:18.04 username/ubuntu:18.04</span><br><span class="line">docker push username/ubuntu:18.04</span><br><span class="line">docker search username</span><br></pre></td></tr></table></figure>
+
+<h3 id="私有仓库"><a href="#私有仓库" class="headerlink" title="私有仓库"></a>私有仓库</h3><p>工具: docker-registry</p>
+<h3 id="高级仓库配置"><a href="#高级仓库配置" class="headerlink" title="高级仓库配置"></a>高级仓库配置</h3><p>工具: Docker Compose</p>
+<p>拥有权限认证, TLS的私有仓库</p>
+<p>略…</p>
+<h2 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h2><ul>
+<li>数据卷(Volumes) - 可供一个或多个容器使用的特殊目录; 绕过UFS</li>
+<li>挂载主机目录(Bind Mounts)</li>
+</ul>
+<h3 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker volume create my-vol</span><br><span class="line">docker volume rm my-vol</span><br><span class="line"></span><br><span class="line">docker volume ls</span><br><span class="line">docker volume prune</span><br><span class="line"></span><br><span class="line">docker volume inspect my-vol</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name web \</span><br><span class="line">--mount <span class="built_in">source</span>=myvol,target=/webapp \</span><br><span class="line">training/webapp \</span><br><span class="line">python app.py</span><br><span class="line"></span><br><span class="line">docker inspect web</span><br></pre></td></tr></table></figure>
+
+<h3 id="挂载目录"><a href="#挂载目录" class="headerlink" title="挂载目录"></a>挂载目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name web \</span><br><span class="line">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=/src/webapp,target=/opt/webapp,<span class="built_in">readonly</span> \ <span class="comment"># source代表宿主机; target代表容器位置; readonly代表容器位置只读</span></span><br><span class="line">training/webapp \</span><br><span class="line">python app.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="挂载单个文件"><a href="#挂载单个文件" class="headerlink" title="挂载单个文件"></a>挂载单个文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这样就可以记录容器的命令使用情况</span></span><br><span class="line">docker run --rm -it \</span><br><span class="line">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=<span class="variable">$HOME</span>/.bash_history,target=/root/.bash_history \</span><br><span class="line">ubuntu:18.04 \</span><br><span class="line">bash</span><br></pre></td></tr></table></figure>
+</article><div id="paginator"></div></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> Haojen 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script></body></html>

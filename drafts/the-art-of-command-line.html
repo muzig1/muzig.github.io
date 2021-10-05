@@ -1,0 +1,101 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>The art of command line</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Haojen's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article id="page"><h1>The art of command line</h1><p>在此回顾一下命令行的高效使用方式, 提高日常操作流程.</p>
+<a id="more"></a>
+
+<ul>
+<li><a href="#tood">TOOD</a></li>
+<li><a href="#%E5%9F%BA%E7%A1%80">基础</a></li>
+<li><a href="#%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8">日常使用</a></li>
+</ul>
+<h2 id="TOOD"><a href="#TOOD" class="headerlink" title="TOOD"></a>TOOD</h2><ul>
+<li><input checked disabled type="checkbox"> 基础</li>
+<li><input checked disabled type="checkbox"> 日常使用</li>
+<li><input disabled type="checkbox"> 文件以及数据处理</li>
+<li><input disabled type="checkbox"> 系统调试</li>
+<li><input disabled type="checkbox"> 单行脚本</li>
+<li><input disabled type="checkbox"> 冷门但有用</li>
+<li><input disabled type="checkbox"> 仅限OSX系统</li>
+</ul>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li><input disabled type="checkbox"> 通读man bash</li>
+<li><input checked disabled type="checkbox"> 熟悉vim</li>
+<li><input checked disabled type="checkbox"> 学会man, apropos, type, shell别名等</li>
+<li><input checked disabled type="checkbox"> 学会重定向管道; 明白输出文件&gt;&gt;; stdout, stdin, stderr;</li>
+<li><input checked disabled type="checkbox"> 学会通配符 * ? [ … ], ‘ “ 区别</li>
+<li><input checked disabled type="checkbox"> 熟悉bash的任务管理工具; &amp;, nohup, ctrl-z, ctrl-c, jobs, fg, bg, kill</li>
+<li><input checked disabled type="checkbox"> 熟悉ssh登陆, ssh-agent, ssh-add无密码认证登陆</li>
+<li><input disabled type="checkbox"> 基本文件管理工具<ul>
+<li><input checked disabled type="checkbox"> ls, ls -l</li>
+<li><input checked disabled type="checkbox"> less, head, tail, tail -F, less +F</li>
+<li><input checked disabled type="checkbox"> ln, ln -s (软硬链接的区别)</li>
+<li><input disabled type="checkbox"> df, mount, fdisk, mkfs, lsblk</li>
+<li><input disabled type="checkbox"> 知道inode是什么; ls -i, df -i 等命令相关</li>
+</ul>
+</li>
+<li><input disabled type="checkbox"> 网络管理工具<ul>
+<li><input checked disabled type="checkbox"> ip, ifconfig</li>
+<li><input disabled type="checkbox"> dig</li>
+</ul>
+</li>
+<li><input checked disabled type="checkbox"> 版本控制git, svn, 以及oh-my-zsh里面的alias</li>
+<li><input checked disabled type="checkbox"> 熟悉正则表达, grep, egrep, zgrep<ul>
+<li><input checked disabled type="checkbox"> -ABC</li>
+<li><input checked disabled type="checkbox"> -v</li>
+<li><input checked disabled type="checkbox"> -i</li>
+<li><input checked disabled type="checkbox"> -o</li>
+<li><input checked disabled type="checkbox"> -r</li>
+</ul>
+</li>
+<li><input checked disabled type="checkbox"> 学会管理工具使用, apt, yum, dnf, pacman, pip3</li>
+</ul>
+<h2 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h2><ul>
+<li><input disabled type="checkbox"> Tab自动补全<ul>
+<li><input checked disabled type="checkbox"> ctrl-r, ctrl-w, ctrl-u, ctrl-a, ctrl-e, ctrl-k, ctrl-l</li>
+<li><input checked disabled type="checkbox"> alt-b, alt-f</li>
+<li><input disabled type="checkbox"> alt-., alt-*</li>
+<li><input checked disabled type="checkbox"> man readline</li>
+</ul>
+</li>
+<li><input disabled type="checkbox"> set -i vi | set -i emacs</li>
+<li><input checked disabled type="checkbox"> export EDITOR=vim<ul>
+<li><input checked disabled type="checkbox"> ctrl-x ctrl-e</li>
+<li><input disabled type="checkbox"> escape-v</li>
+</ul>
+</li>
+<li><input checked disabled type="checkbox"> history<ul>
+<li><input checked disabled type="checkbox"> !n</li>
+<li><input checked disabled type="checkbox"> !$</li>
+<li><input checked disabled type="checkbox"> !!</li>
+<li><input disabled type="checkbox"> HISTORY EXPANSION</li>
+</ul>
+</li>
+<li><input checked disabled type="checkbox"> cd ~, $HOME, cd -</li>
+<li><input checked disabled type="checkbox"> xargs | parallel 结合 awk<ul>
+<li><input checked disabled type="checkbox"> xargs -I {} echo {}</li>
+</ul>
+</li>
+<li><input checked disabled type="checkbox"> pstree -p 进程树</li>
+<li><input disabled type="checkbox"> pgrep, pkill</li>
+<li><input checked disabled type="checkbox"> kill -STOP [pid]<ul>
+<li><input checked disabled type="checkbox"> man 7 signal</li>
+</ul>
+</li>
+<li><input checked disabled type="checkbox"> nohup, disown</li>
+<li><input disabled type="checkbox"> netstat -lntp | ss -plat<ul>
+<li><input disabled type="checkbox"> -u</li>
+<li><input disabled type="checkbox"> lsof -iTCP -sTCP:LISTEN -P -n</li>
+</ul>
+</li>
+<li><input disabled type="checkbox"> lsof查看套接字和文件</li>
+<li><input checked disabled type="checkbox"> uptime | w</li>
+<li><input checked disabled type="checkbox"> seq</li>
+<li><input checked disabled type="checkbox"> alias<ul>
+<li><input checked disabled type="checkbox"> alias ll=’ls -latr’</li>
+<li><input checked disabled type="checkbox"> 别名保存在~/.bashrc</li>
+<li><input checked disabled type="checkbox"> 环境变量保存在~/.bash_profile</li>
+</ul>
+</li>
+<li><input disabled type="checkbox"> 变量名和文件名包含空格, 需要使用引号包括起来</li>
+</ul>
+</article><div id="paginator"></div></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> Haojen 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script></body></html>

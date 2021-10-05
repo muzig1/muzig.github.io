@@ -1,0 +1,49 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>Golang 中高级技术</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Haojen's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article id="page"><h1>Golang 中高级技术</h1><p>之前有了初级技术, 接下来总结一下关于中高级开发的技术要求</p>
+<a id="more"></a>
+
+<ul>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#%E6%B5%81%E7%A8%8B">流程</a></li>
+<li><a href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">友情链接</a></li>
+</ul>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p>后续再俩梳理, 目前看了一遍发现自己真的基础太欠缺了, 对于底层的实现机制来说, 还有很多需要涉猎, 不过其实对于开发来说, 涉及面其实少.</p>
+<p>后面要注重代码的性能分析, 以及代码开发效率和质量相关问题的分析, 个人排序: 开发质量(易查错, 健壮性) &gt; 开发效率 &gt; 性能</p>
+<ul>
+<li><input disabled type="checkbox"> 整理文档</li>
+</ul>
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ol>
+<li>自我介绍</li>
+<li>代码效率分析，考察局部性原理</li>
+<li>多核CPU场景下，cache如何保持一致、不冲突？</li>
+<li>uint类型溢出</li>
+<li>介绍rune类型</li>
+<li>编程题：3个函数分别打印cat、dog、fish，要求每个函数都要起一个goroutine，按照cat、dog、fish顺序打印在屏幕上100次。</li>
+<li>介绍一下channel，无缓冲和有缓冲区别</li>
+<li>是否了解channel底层实现，比如实现channel的数据结构是什么？</li>
+<li>channel是否线程安全？</li>
+<li>Mutex是悲观锁还是乐观锁？悲观锁、乐观锁是什么？</li>
+<li>Mutex几种模式？</li>
+<li>Mutex可以做自旋锁吗？</li>
+<li>介绍一下RWMutex</li>
+<li>项目中用过的锁？</li>
+<li>介绍一下线程安全的共享内存方式</li>
+<li>介绍一下goroutine</li>
+<li>goroutine自旋占用cpu如何解决（go调用、gmp）</li>
+<li>介绍linux系统信号</li>
+<li>goroutine抢占时机（gc 栈扫描）</li>
+<li>Gc触发时机</li>
+<li>是否了解其他gc机制</li>
+<li>Go内存管理方式</li>
+<li>Channel分配在栈上还是堆上？哪些对象分配在堆上，哪些对象分配在栈上？</li>
+<li>介绍一下大对象小对象，为什么小对象多了会造成gc压力？</li>
+<li>项目中遇到的oom情况？</li>
+<li>项目中使用go遇到的坑？</li>
+<li>工作遇到的难题、有挑战的事情，如何解决？</li>
+<li>如何指定指令执行顺序？</li>
+</ol>
+<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12p4y1W7Dz">中高级Golang</a></li>
+</ul>
+</article><div id="paginator"></div></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> Haojen 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script></body></html>
