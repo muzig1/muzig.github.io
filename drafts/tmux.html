@@ -1,0 +1,54 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>tmux 快速指北</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><meta name="generator" content="Hexo 5.2.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Haojen's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article id="page"><h1>tmux 快速指北</h1><p>如果您用过screen的话, 相比知道它的好处, 这里记录一款类似的工具tmux.</p>
+<a id="more"></a>
+
+<ul>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA">🚀 快速搭建</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE">常用快捷键</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6">插件</a><ul>
+<li><a href="#oh-my-tmux">oh-my-tmux</a></li>
+<li><a href="#tmux-resurrect">tmux-resurrect</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">友情链接</a></li>
+</ul>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li><input disabled type="checkbox"> 常用快捷键</li>
+</ul>
+<h2 id="🚀-快速搭建"><a href="#🚀-快速搭建" class="headerlink" title="🚀 快速搭建"></a>🚀 快速搭建</h2><ul>
+<li>Install Tmux:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mac</span></span><br><span class="line">brew install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># linux - RedHat</span></span><br><span class="line">yum install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># linux - Debian</span></span><br><span class="line">apt install tmux</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Clone TPM:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Put this at the bottom of ~/.tmux.conf ($XDG_CONFIG_HOME/tmux/tmux.conf works too):</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 推荐配置</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/gpakosz/.tmux.git ~/.tmux/oh-my-tmux/</span><br><span class="line">cp ~/.tmux/oh-my-tmux/.tmux.conf ~/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义配置</span></span><br><span class="line">wget https://github.com/muzig/oh-my-mac/blob/main/tmux/.tmux.conf ~/.tmux.conf.local</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Reload TMUX environment so TPM is sourced:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># type this in terminal if tmux is already running</span></span><br><span class="line">$ tmux <span class="built_in">source</span> ~/.tmux.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="oh-my-tmux"><a href="#oh-my-tmux" class="headerlink" title="oh-my-tmux"></a>oh-my-tmux</h3><p>作用: 通用tmux配置搭配</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/gpakosz/.tmux.git</span><br><span class="line">ln -s -f .tmux/.tmux.conf</span><br><span class="line">cp .tmux/.tmux.conf.local .</span><br></pre></td></tr></table></figure>
+
+<h3 id="tmux-resurrect"><a href="#tmux-resurrect" class="headerlink" title="tmux-resurrect"></a>tmux-resurrect</h3><p>作用: 保存tmux的layout, 便于重启电脑快速恢复.</p>
+<ul>
+<li>Add plugin to the list of TPM plugins in .tmux.conf:</li>
+<li>Hit prefix + I to fetch the plugin and source it. You should now be able to use the plugin.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -g @plugin <span class="string">&#x27;tmux-plugins/tmux-resurrect&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/tmux-plugins/tpm">TPM</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/gpakosz/.tmux">oh-my-tmux</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/tmux-plugins/tmux-resurrect">tmux-resurrect</a></li>
+</ul>
+</article><div id="paginator"></div></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> Haojen 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script></body></html>

@@ -1,51 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://muzig.github.io/2021/02/17/git/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2020/12/05/goland-cracking/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2020/12/26/golang-GC/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2020/12/27/golang-escape-analysis/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2020/12/26/golang-scheduling/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2021/02/03/oh-my-mac/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2021/01/23/raspberryPi-note/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2021/03/21/scp/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2020/12/19/shell-note/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2021/01/29/the-documentary-of-vue/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2021/01/30/tmux/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
     <loc>http://muzig.github.io/drafts/docker-note.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/git.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/goland-cracking.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/golang-GC.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/golang-escape-analysis.html</loc>
     <lastmod>2021-10-05</lastmod>
   </url>
   <url>
@@ -53,11 +25,39 @@
     <lastmod>2021-10-05</lastmod>
   </url>
   <url>
+    <loc>http://muzig.github.io/drafts/golang-scheduling.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
     <loc>http://muzig.github.io/drafts/golang-senior-interview.html</loc>
     <lastmod>2021-10-05</lastmod>
   </url>
   <url>
+    <loc>http://muzig.github.io/drafts/oh-my-mac.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/raspberryPi-note.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/scp.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/shell-note.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
     <loc>http://muzig.github.io/drafts/the-art-of-command-line.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/the-documentary-of-vue.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/tmux.html</loc>
     <lastmod>2021-10-05</lastmod>
   </url>
   <url>

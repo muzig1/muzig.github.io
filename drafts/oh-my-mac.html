@@ -1,0 +1,89 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>My Mac</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.png"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><meta name="generator" content="Hexo 5.2.0"></head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">Haojen's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article id="page"><h1>My Mac</h1><p>整理从0到1使用Mac系统, 提高生产力第一步, 学会良好的使用工具.</p>
+<a id="more"></a>
+
+<p>今天由于电池问题, 换了一波电脑, big sur系统, 之前打算升级来着一直怕有兼容性问题, 不过今天实际体验了下, 目前没有遇到什么问题, 这里顺带写一些装电脑细节, 便于快速整理恢复系统细节.</p>
+<ul>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#terminal">Terminal</a><ul>
+<li><a href="#homebrew">Homebrew</a></li>
+<li><a href="#iterm2">iTerm2</a></li>
+<li><a href="#zsh">zsh</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BD%AF%E4%BB%B6%E7%AF%87">软件篇</a><ul>
+<li><a href="#%E5%BF%85%E5%A4%87">必备</a></li>
+<li><a href="#%E5%B7%A5%E5%85%B7">工具</a></li>
+<li><a href="#%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91">程序开发</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%B6%E4%BB%96%E7%BB%86%E8%8A%82">其他细节</a><ul>
+<li><a href="#iterm2-1">iTerm2</a></li>
+<li><a href="#goland">Goland</a></li>
+<li><a href="#tmux">Tmux</a></li>
+<li><a href="#oh-my-zsh">oh-my-zsh</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5">友情链接</a></li>
+</ul>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li><input checked disabled type="checkbox"> Terminal</li>
+<li><input checked disabled type="checkbox"> 软件篇</li>
+<li><input checked disabled type="checkbox"> 其他细节</li>
+</ul>
+<h2 id="Terminal"><a href="#Terminal" class="headerlink" title="Terminal"></a>Terminal</h2><h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a><a href="https://muzig.github.io/2021/01/30/tmux/">Homebrew</a></h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install --cask iterm2</span><br></pre></td></tr></table></figure>
+
+<h3 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h3><ul>
+<li>安装</li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh &amp;&amp; chsh -s usr/<span class="built_in">local</span>/bin/zsh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>插件</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh">ohmyzsh</a></p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">brew install autojump</span><br><span class="line">brew install fzf</span><br><span class="line"></span><br><span class="line">brew install git</span><br><span class="line">brew install git-lfs</span><br><span class="line"></span><br><span class="line">brew install tmux</span><br><span class="line"></span><br><span class="line">brew install vim</span><br><span class="line"></span><br><span class="line">brew install wget</span><br><span class="line">brew install telnet</span><br><span class="line">brew install rlwrap</span><br></pre></td></tr></table></figure>
+
+<h2 id="软件篇"><a href="#软件篇" class="headerlink" title="软件篇"></a>软件篇</h2><h3 id="必备"><a href="#必备" class="headerlink" title="必备"></a>必备</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">brew install --cask google-chrome</span><br><span class="line">brew install --cask dingtalk</span><br><span class="line">brew install --cask wechat</span><br><span class="line">brew install --cask qq</span><br><span class="line">brew install --cask sogouinput</span><br><span class="line">brew install --cask neteasemusic</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.yinxiang.com/">印象笔记</a></li>
+</ul>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew install --cask appcleaner</span><br><span class="line">brew install --cask [dozer](https://github.com/Mortennn/Dozer)</span><br><span class="line">brew install --cask snipaste</span><br><span class="line">brew install --cask tencent-lemon</span><br></pre></td></tr></table></figure>
+
+<h3 id="程序开发"><a href="#程序开发" class="headerlink" title="程序开发"></a>程序开发</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">brew install --cask goland</span><br><span class="line">brew install --cask docker</span><br><span class="line">brew install --cask postman</span><br><span class="line">brew install --cask robo-3t</span><br><span class="line">brew install --cask visual-studio-code</span><br><span class="line">brew install --cask unity-hub</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他细节"><a href="#其他细节" class="headerlink" title="其他细节"></a>其他细节</h2><h3 id="iTerm2-1"><a href="#iTerm2-1" class="headerlink" title="iTerm2"></a>iTerm2</h3><blockquote>
+<p>Alt + b / f 无法使用问题</p>
+</blockquote>
+<p><img src="/../img/altfb.png" alt="解决方案"></p>
+<h3 id="Goland"><a href="#Goland" class="headerlink" title="Goland"></a>Goland</h3><blockquote>
+<p>ideaVim快捷键冲突, 或者不生效的修改.</p>
+</blockquote>
+<p><img src="/../img/goland-setting.png" alt="1"><br><img src="/../img/goland-setting2.png" alt="2"></p>
+<h3 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a><a href="https://muzig.github.io/2021/01/30/tmux/">Tmux</a></h3><h3 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/wting/autojump">autojump</a></p>
+</blockquote>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install autojump</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestion</a></p>
+</blockquote>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href>zsh-syntax-highlighting</a></p>
+</blockquote>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Which plugins would you like to load?</span></span><br><span class="line"><span class="comment"># Standard plugins can be found in $ZSH/plugins/</span></span><br><span class="line"><span class="comment"># Custom plugins may be added to $ZSH_CUSTOM/plugins/</span></span><br><span class="line"><span class="comment"># Example format: plugins=(rails git textmate ruby lighthouse)</span></span><br><span class="line"><span class="comment"># Add wisely, as too many plugins slow down shell startup.</span></span><br><span class="line">plugins=(</span><br><span class="line">	git</span><br><span class="line">	git-flow</span><br><span class="line">	git-auto-fetch</span><br><span class="line">	git-lfs</span><br><span class="line">	git-prompt</span><br><span class="line">	github</span><br><span class="line"></span><br><span class="line">	vscode</span><br><span class="line"></span><br><span class="line">	tmux</span><br><span class="line">	timer</span><br><span class="line">	golang</span><br><span class="line">	fzf</span><br><span class="line"></span><br><span class="line">	autojump</span><br><span class="line">	zsh-syntax-highlighting</span><br><span class="line">	zsh-autosuggestions</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> <span class="variable">$ZSH</span>/oh-my-zsh.sh</span><br><span class="line"><span class="built_in">source</span> ~/.gvm/scripts/gvm</span><br><span class="line"></span><br><span class="line"><span class="comment"># User configuration</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># export golang</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/go/go1.13/bin</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/go/bin</span><br></pre></td></tr></table></figure>
+
+<h2 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.zrahh.com/archives/167.html">左岸博客 - zsh插件推荐</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/fungleo/article/details/78055808">FungLeo - mac 下使用 iTerm 终端工具无法使用 alt+b 和 alt+f 快捷键的解决方法</a></li>
+</ul>
+</article><div id="paginator"></div></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> Haojen 2021</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script></body></html>
