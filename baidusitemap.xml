@@ -1,43 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://muzig.github.io/drafts/docker-note.html</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/drafts/golang-primary-interview.html</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/drafts/golang-senior-interview.html</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/drafts/the-art-of-command-line.html</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/drafts/ts-note.html</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/drafts/uni-app.html</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/drafts/vue-note.html</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2021/01/29/the-documentary-of-vue/</loc>
+    <loc>http://muzig.github.io/2021/02/17/git/</loc>
     <lastmod>2021-10-05</lastmod>
   </url>
   <url>
     <loc>http://muzig.github.io/2020/12/05/goland-cracking/</loc>
-    <lastmod>2021-10-05</lastmod>
-  </url>
-  <url>
-    <loc>http://muzig.github.io/2021/02/17/git/</loc>
     <lastmod>2021-10-05</lastmod>
   </url>
   <url>
@@ -69,7 +37,39 @@
     <lastmod>2021-10-05</lastmod>
   </url>
   <url>
+    <loc>http://muzig.github.io/2021/01/29/the-documentary-of-vue/</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
     <loc>http://muzig.github.io/2021/01/30/tmux/</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/docker-note.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/golang-primary-interview.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/golang-senior-interview.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/the-art-of-command-line.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/ts-note.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/uni-app.html</loc>
+    <lastmod>2021-10-05</lastmod>
+  </url>
+  <url>
+    <loc>http://muzig.github.io/drafts/vue-note.html</loc>
     <lastmod>2021-10-05</lastmod>
   </url>
 </urlset> 
