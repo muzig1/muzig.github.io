@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Golang Escape Analysis | Hexo</title>
+  <meta name="description" content="了解 Golang 语言的逃逸机制, 有助于在编写代码的时候绕开逃逸分析的缺陷, 从而编写更加高效的代码.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang Escape Analysis">
+<meta property="og:url" content="http://muzig.github.io/2020/12/27/golang-escape-analysis/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="了解 Golang 语言的逃逸机制, 有助于在编写代码的时候绕开逃逸分析的缺陷, 从而编写更加高效的代码.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-27T14:42:27.000Z">
+<meta property="article:modified_time" content="2021-10-05T08:08:57.897Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="golang">
+<meta property="article:tag" content="escape-analysis">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://muzig.github.io/2020/12/27/golang-escape-analysis/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/muzig" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">钢</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">游戏后端开发</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Chengdu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/muzig" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%84%9A%E6%9C%AC/">脚本</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/crack/" rel="tag">crack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/escape-analysis/" rel="tag">escape-analysis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gc/" rel="tag">gc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/goland/" rel="tag">goland</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/" rel="tag">golang</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/" rel="tag">mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberryPi/" rel="tag">raspberryPi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scheduling/" rel="tag">scheduling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scp/" rel="tag">scp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/" rel="tag">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-js/" rel="tag">vue.js</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/crack/" style="font-size: 13px;">crack</a> <a href="/tags/escape-analysis/" style="font-size: 13px;">escape-analysis</a> <a href="/tags/gc/" style="font-size: 13px;">gc</a> <a href="/tags/git/" style="font-size: 13px;">git</a> <a href="/tags/goland/" style="font-size: 13px;">goland</a> <a href="/tags/golang/" style="font-size: 14px;">golang</a> <a href="/tags/mac/" style="font-size: 13px;">mac</a> <a href="/tags/note/" style="font-size: 13px;">note</a> <a href="/tags/raspberryPi/" style="font-size: 13px;">raspberryPi</a> <a href="/tags/scheduling/" style="font-size: 13px;">scheduling</a> <a href="/tags/scp/" style="font-size: 13px;">scp</a> <a href="/tags/shell/" style="font-size: 13px;">shell</a> <a href="/tags/tmux/" style="font-size: 13px;">tmux</a> <a href="/tags/vue-js/" style="font-size: 13px;">vue.js</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Mac/">Mac</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/03/21/scp/" class="title">Mac 同步文件到 Linux</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-03-21T18:48:48.000Z" itemprop="datePublished">2021-03-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/02/17/git/" class="title">Git 问题收集</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-02-17T11:06:42.000Z" itemprop="datePublished">2021-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Mac/">Mac</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/02/03/oh-my-mac/" class="title">My Mac</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-02-03T23:38:39.000Z" itemprop="datePublished">2021-02-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/01/30/tmux/" class="title">tmux 快速指北</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-01-30T09:52:48.000Z" itemprop="datePublished">2021-01-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+              </p>
+              <p class="item-title">
+                <a href="/2021/01/29/the-documentary-of-vue/" class="title">vue.js 纪录片</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-01-29T21:19:57.000Z" itemprop="datePublished">2021-01-29</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-golang-escape-analysis" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Golang Escape Analysis
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/12/27/golang-escape-analysis/" class="article-date">
+	  <time datetime="2020-12-27T14:42:27.000Z" itemprop="datePublished">2020-12-27</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/escape-analysis/" rel="tag">escape-analysis</a>, <a class="article-tag-link-link" href="/tags/golang/" rel="tag">golang</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/12/27/golang-escape-analysis/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>了解 Golang 语言的逃逸机制, 有助于在编写代码的时候绕开逃逸分析的缺陷, 从而编写更加高效的代码.</p>
+<a id="more"></a>
+
+<ul>
+<li><a href="#%E5%85%B3%E4%BA%8E%E5%A0%86%E6%A0%88">关于堆栈</a></li>
+<li><a href="#%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90">逃逸分析</a><ul>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%8F%98%E9%87%8F">函数变量</a></li>
+<li><a href="#%E9%97%B4%E6%8E%A5%E8%B5%8B%E5%80%BC">间接赋值</a></li>
+<li><a href="#interface">interface</a></li>
+<li><a href="#channel">channel</a></li>
+<li><a href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0">可变参数</a></li>
+</ul>
+</li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5">参考链接</a></li>
+</ul>
+<p>Go 语言较之 C 语言一个很大的优势就是自带 GC 功能，可 GC 并不是没有代价的。写 C 语言的时候，在一个函数内声明的变量，在函数退出后会自动释放掉，因为这些变量分配在栈上。如果你想要变量的数据能在函数退出后还能访问，就需要调用 malloc 方法在堆上申请内存，如果程序不再需要这块内存了，再调用 free 方法释放掉。Go 语言不需要你主动调用 malloc 来分配堆空间，编译器会自动分析，找出需要 malloc 的变量，使用堆内存。编译器的这个分析过程就叫做逃逸分析。</p>
+<h2 id="关于堆栈"><a href="#关于堆栈" class="headerlink" title="关于堆栈"></a>关于堆栈</h2><p>区别如下:</p>
+<ol>
+<li>申请方式的不同。栈由系统自动分配，而堆是人为申请开辟;</li>
+<li>申请大小的不同。栈获得的空间较小，而堆获得的空间较大;</li>
+<li>申请效率的不同。栈由系统自动分配，速度较快，而堆一般速度比较慢;</li>
+<li>存储内容的不同。栈在函数调用时，函数调用语句的下一条可执行语句的地址第一个进栈，然后函数的各个参数进栈，其中静态变量是不入栈的。而堆一般是在头部用一个字节存放堆的大小，堆中的具体内容是人为安排;</li>
+<li>底层不同。栈是连续的空间，而堆是不连续的空间。</li>
+</ol>
+<p>详细细节链接:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html">Language Mechanics On Stacks And Pointers</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-escape-analysis.html">Language Mechanics On Escape Analysis</a></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">stack</span><span class="params">()</span> <span class="title">int</span></span> &#123; </span><br><span class="line">    <span class="comment">// 变量 i 会在栈上分配</span></span><br><span class="line">     i := <span class="number">10</span></span><br><span class="line">     <span class="keyword">return</span> i</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">heap</span><span class="params">()</span> *<span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="comment">// 变量 j 会在堆上分配</span></span><br><span class="line">    j := <span class="number">10</span></span><br><span class="line">    <span class="keyword">return</span> &amp;j</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分析汇编指令如下:</span></span><br><span class="line">go build --gcflags <span class="string">&#x27;-l&#x27;</span> test.go</span><br><span class="line">go tool objdump ./<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>!!! 不要以为使用了堆内存就一定会导致性能低下，使用栈内存会带来性能优势。因为实际项目中，系统的性能瓶颈一般都不会出现在内存分配上。千万不要盲目优化，找到系统瓶颈，用数据驱动优化。</p>
+</blockquote>
+<h2 id="逃逸分析"><a href="#逃逸分析" class="headerlink" title="逃逸分析"></a>逃逸分析</h2><p>需要使用堆空间则逃逸，这没什么可争议的。但编译器有时会将不需要使用堆空间的变量，也逃逸掉。这里是容易出现性能问题的大坑。网上有很多相关文章，列举了一些导致逃逸情况，其实总结起来就一句话：</p>
+<p><strong>多级间接赋值容易导致逃逸。</strong></p>
+<p>Go 语言中的引用类数据类型有 func, interface, slice, map, chan, *Type(指针)。</p>
+<p>记住公式 Data.Field = Value，如果 Data, Field 都是引用类的数据类型，则会导致 Value 逃逸。这里的等号 = 不单单只赋值，也表示参数传递。</p>
+<h3 id="函数变量"><a href="#函数变量" class="headerlink" title="函数变量"></a>函数变量</h3><blockquote>
+<p>若函数是变量, 且参数也是引用类型, 则会发生逃逸</p>
+</blockquote>
+<h3 id="间接赋值"><a href="#间接赋值" class="headerlink" title="间接赋值"></a>间接赋值</h3><blockquote>
+<p>良好的写法是, 在返回的时候再引用地址</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Data <span class="keyword">struct</span> &#123;</span><br><span class="line">    data  <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span></span><br><span class="line">    slice []<span class="keyword">int</span></span><br><span class="line">    ch    <span class="keyword">chan</span> <span class="keyword">int</span></span><br><span class="line">    inf   <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">    p     *<span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    d1 := Data&#123;&#125;</span><br><span class="line">    d1.data = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>) <span class="comment">// GOOD: does not escape</span></span><br><span class="line">    d1.slice = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">4</span>)   <span class="comment">// GOOD: does not escape</span></span><br><span class="line">    d1.ch = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">4</span>)   <span class="comment">// GOOD: does not escape</span></span><br><span class="line">    d1.inf = <span class="number">3</span>                  <span class="comment">// GOOD: does not escape</span></span><br><span class="line">    d1.p = <span class="built_in">new</span>(<span class="keyword">int</span>)             <span class="comment">//  GOOD: does not escape</span></span><br><span class="line"></span><br><span class="line">    d2 := <span class="built_in">new</span>(Data)             <span class="comment">// d2 是指针变量， 下面为该指针变量中的指针成员赋值</span></span><br><span class="line">    d2.data = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>) <span class="comment">// BAD: escape to heap</span></span><br><span class="line">    d2.slice = <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">4</span>)   <span class="comment">// BAD:  escape to heap</span></span><br><span class="line">    d2.ch = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">4</span>)   <span class="comment">// BAD:  escape to heap</span></span><br><span class="line">    d2.inf = <span class="number">3</span>                  <span class="comment">// BAD:  escape to heap</span></span><br><span class="line">    d2.p = <span class="built_in">new</span>(<span class="keyword">int</span>)             <span class="comment">// BAD:  escape to heap</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="interface"><a href="#interface" class="headerlink" title="interface"></a>interface</h3><p>只要使用了 Interface 类型(不是 interafce{})，那么赋值给它的变量一定会逃逸。因为 interfaceVariable.Method() 先是间接的定位到它的实际值，再调用实际值的同名方法，执行时实际值作为参数传递给方法。相当于interfaceVariable.Method.this = realValue</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Iface <span class="keyword">interface</span> &#123;</span><br><span class="line">    Dummy()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Integer <span class="keyword">int</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(i Integer)</span> <span class="title">Dummy</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> (</span><br><span class="line">        iface Iface</span><br><span class="line">        i     Integer</span><br><span class="line">    )</span><br><span class="line">    iface = i</span><br><span class="line">    iface.Dummy() <span class="comment">//  make i escape to heap</span></span><br><span class="line">    <span class="comment">// 形成 iface.Dummy.i = i</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h3><blockquote>
+<p>发送到 channel 的数据类型都将逃逸</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> (</span><br><span class="line">        chInteger   = <span class="built_in">make</span>(<span class="keyword">chan</span> *<span class="keyword">int</span>)</span><br><span class="line">        chMap       = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>)</span><br><span class="line">        chSlice     = <span class="built_in">make</span>(<span class="keyword">chan</span> []<span class="keyword">int</span>)</span><br><span class="line">        chInterface = <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">interface</span>&#123;&#125;)</span><br><span class="line">        a, b, c, d  = <span class="number">0</span>, <span class="keyword">map</span>[<span class="keyword">int</span>]<span class="keyword">int</span>&#123;&#125;, []<span class="keyword">int</span>&#123;&#125;, <span class="number">32</span></span><br><span class="line">    )</span><br><span class="line">    chInteger &lt;- &amp;a  <span class="comment">// 逃逸</span></span><br><span class="line">    chMap &lt;- b       <span class="comment">// 逃逸</span></span><br><span class="line">    chSlice &lt;- c     <span class="comment">// 逃逸</span></span><br><span class="line">    chInterface &lt;- d <span class="comment">// 逃逸</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><p>可变参数如 func(arg …string) 实际与 func(arg []string) 是一样的，会增加一层访问路径。这也是 fmt.Sprintf 总是会使参数逃逸的原因。</p>
+<p>例子非常多，这里不能一一列举，我们只需要记住分析方法就好</p>
+<p>即，2 级或更多级的访问赋值会容易导致数据逃逸。这里加上容易二字是因为随着语言的发展，相信这些问题会被慢慢解决，但现阶段，这个可以作为我们分析逃逸现象的依据。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">    roles []<span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(u *User)</span> <span class="title">SetRoles</span><span class="params">(roles []<span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    u.roles = roles</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetRoles</span><span class="params">(u User, roles []<span class="keyword">string</span>)</span> <span class="title">User</span></span> &#123;</span><br><span class="line">    u.roles = roles</span><br><span class="line">    <span class="keyword">return</span> u</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">    A []<span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(u *User)</span> <span class="title">Set</span><span class="params">(a []<span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    u.A = a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetUser</span><span class="params">(user User, a []<span class="keyword">string</span>)</span> <span class="title">User</span></span> &#123;</span><br><span class="line">    user.A = a</span><br><span class="line">    <span class="keyword">return</span> user</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BenchmarkUser</span><span class="params">(b *testing.B)</span></span> &#123;</span><br><span class="line">    <span class="comment">// BenchmarkUser-4      39182143            29.0 ns/op</span></span><br><span class="line">    <span class="comment">//u := new(User)</span></span><br><span class="line">    <span class="comment">//for i := 0; i &lt; b.N; i++ &#123;</span></span><br><span class="line">    <span class="comment">//  u.Set([]string&#123;&quot;a&quot;&#125;)</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// BenchmarkUser-4   1000000000         0.585 ns/op</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; b.N; i++ &#123;</span><br><span class="line">        _ = SetUser(User&#123;&#125;, []<span class="keyword">string</span>&#123;<span class="string">&quot;a&quot;</span>&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>大多数情况下，性能优化都会为程序带来一定的复杂度。<strong>建议实际项目中还是怎么方便怎么写，功能完成后通过性能分析找到瓶颈所在，再对局部进行优化。</strong></li>
+<li>多级间接赋值会导致 Go 编译器出现不必要的逃逸，在一些情况下可能我们只需要修改一下数据结构就会使性能有大幅提升。这也是很多人不推荐在 Go 中使用指针的原因，因为它会增加一级访问路径，而 map, slice, interface{}等类型是不可避免要用到的，为了减少不必要的逃逸，只能拿指针开刀了。</li>
+</ol>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/518466b4ee96">达菲格-Go 语言内存管理（三）：逃逸分析</a></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://muzig.github.io/2020/12/27/golang-escape-analysis/" title="Golang Escape Analysis" target="_blank" rel="external">http://muzig.github.io/2020/12/27/golang-escape-analysis/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/muzig" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/muzig" target="_blank"><span class="text-dark">钢</span><small class="ml-1x">游戏后端开发</small></a></h3>
+        <div>保持热爱, 奔赴山海.</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/01/23/raspberryPi-note/" title="raspberryPi 入门"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/12/26/golang-GC/" title="Golang GC"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/muzig" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: true,
+    appId: 'iXHePYtYLDhvXVowXpCEsN7Q-gzGzoHsz',
+    appKey: 'EivU5PsoKKSfxoKo3KFoJkuh',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
